@@ -25,3 +25,7 @@ Currently there is no plugin in Godot Assets Library. One should copy-paste `god
 * Documentation;
 * Examples.
 
+# Communication
+Join this [Telegram channel](https://t.me/godot_rl) to watch for new updates.
+
+You can contact me through [E-mail](chernyakonstantin@gmail.com) or [Telegram](https://t.me/kainrehck).
