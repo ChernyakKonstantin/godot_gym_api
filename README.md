@@ -17,7 +17,7 @@ The application implemented in Godot serves as TCP-server, accepting requests fr
 # Installation
 Currently, there is no PyPy package. One can copy-paste `python` directory content into his own code.
 
-Currently there is no plugin in Godot Assets Library. One should copy-paste `godot_addon` content into `addons` directory of his own project.
+Currently there is no plugin in Godot Assets Library. One should copy-paste `godot_addon` content into `addons` directory of his own project and enable the `Reinforcement Learning` plugin in `Project/Project Settings/Plugins`.
 
 # Coming soon
 * Image observation support;
