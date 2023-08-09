@@ -27,9 +27,12 @@ onready var physics_frames_timer = PhysicsFramesTimer.new(repeat_action)
 # Communication server to handle request via TCP protocol.
 onready var communication = Communication.new()
 
+func _enter_tree():
+	# Disable physics on the environment launch.
+	get_tree().set_pause(true)
+
 # If one implements custom `_ready` method in his own subclass the method will be called nevertheless.
 func _ready():
-	get_tree().set_pause(true)
 	set_pause_mode(2)
 	communication.connect("got_connection", self, "_on_got_connection")
 
