@@ -27,6 +27,7 @@ onready var physics_frames_timer = PhysicsFramesTimer.new(repeat_action)
 # Communication server to handle request via TCP protocol.
 onready var communication = Communication.new()
 
+# If one implements custom `_ready` method in his own subclass the method will be called nevertheless.
 func _ready():
 	get_tree().set_pause(true)
 	set_pause_mode(2)
@@ -39,7 +40,7 @@ func _physics_process(delta):
 	physics_frames_timer.step()
 
 # One can extend the method to perform additional logic before or after or override it.
-# Generally, the method enables physics processing to emulate real-time interaction.  
+# Generally, the method enables physics processing to emulate real-time interaction.
 # Example:
 # ```
 #	func _step(action):
@@ -51,9 +52,9 @@ func _physics_process(delta):
 # 	func _step(action):
 #		# some code here
 # 		agent.set_action(action)
-# 		get_tree().set_pause(false)  # Enable physics	
+# 		get_tree().set_pause(false)  # Enable physics
 # 		yield(physics_frames_timer.start(), "timer_end")
-# 		get_tree().set_pause(true)  # Disable physics	
+# 		get_tree().set_pause(true)  # Disable physics
 # ```
 func _step(action):
 	agent.set_action(action)
@@ -61,7 +62,7 @@ func _step(action):
 	physics_frames_timer.start()
 	yield(physics_frames_timer, "timer_end")
 	get_tree().set_pause(true)  # Disable physics
-	
+
 # One should override the method in his own subclass.
 # Generally, the method should reset a world and an agent.
 func _reset():
@@ -82,7 +83,7 @@ func _on_got_connection(request: Dictionary):
 		_after_send_response()
 	communication.close()
 
-# The method currently does not support any binary data. 
+# The method currently does not support any binary data.
 # One should override the method to implement such a logic.
 func _send_response(observation_request: Dictionary):
 	var response = Dictionary()
