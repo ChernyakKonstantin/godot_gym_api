@@ -10,7 +10,7 @@ var server = TCP_Server.new()
 var connection: StreamPeerTCP
 var have_connection: bool = false
 
-func _on_start_server(port: int, address: String):
+func start_server(port: int, address: String):
 	# Listen for incoming connections
 	server.listen(port, address)
 	print("Listen on address: ", address, ", port: ", port)
@@ -22,7 +22,7 @@ func server_poll():
 		if request != null and not request.empty():
 			have_connection = true
 			emit_signal("got_connection", request)
-		
+
 func _read_request() -> Dictionary:
 	var request_package_size = connection.get_available_bytes()
 	var request_data = connection.get_utf8_string(request_package_size)
