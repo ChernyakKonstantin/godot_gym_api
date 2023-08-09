@@ -1,6 +1,10 @@
 extends Spatial
 class_name RLEnvWorld, "icons/world_node_icon.png"
 
+# If one implements custom `_ready` method in his own subclass the method will be called nevertheless.
+func _ready(): 
+	set_pause_mode(Node.PAUSE_MODE_STOP)
+
 # Optional method to implement the world reset.
 func reset():
 	pass
