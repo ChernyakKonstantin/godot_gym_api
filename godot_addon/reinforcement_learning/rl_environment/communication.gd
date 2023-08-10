@@ -18,6 +18,7 @@ func start_server(port: int, address: String):
 func server_poll():
 	if not have_connection and server.is_connection_available():
 		connection = server.take_connection()
+		connection.set_no_delay(true)
 		var request = _read_request()
 		if request != null and not request.empty():
 			have_connection = true
