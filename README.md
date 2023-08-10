@@ -19,11 +19,14 @@ Currently, there is no PyPy package. One can copy-paste `python` directory conte
 
 Currently there is no plugin in Godot Assets Library. One should copy-paste `godot_addon` content into `addons` directory of his own project and enable the `Reinforcement Learning` plugin in `Project/Project Settings/Plugins`.
 
+# Running Examples
+To run an example launch main scene of Godot project `examples/apple_seeker/godot` from Godot engine, then launch python training code with `python examples/apple_seeker/python/train.py ` command.
+
 # Coming soon
 * Image observation support;
 * Vectorized Environment support;
-* Documentation;
-* Examples.
+* Multi-agent Environment support;
+* Documentation.
 
 # Communication
 Join this [Telegram channel](https://t.me/godot_rl) to watch for new updates.

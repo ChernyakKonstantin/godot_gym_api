@@ -1,0 +1,134 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Agent.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+flags_disable_ambient_light = true
+albedo_color = Color( 0, 1, 0, 0.0392157 )
+
+[sub_resource type="CylinderMesh" id=5]
+material = SubResource( 4 )
+top_radius = 5.0
+bottom_radius = 5.0
+height = 0.05
+radial_segments = 16
+rings = 1
+
+[sub_resource type="CapsuleMesh" id=1]
+radius = 0.8
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0, 1, 0, 1 )
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.8
+
+[node name="RLAgent" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Sensors" type="Spatial" parent="."]
+
+[node name="RayCast" type="RayCast" parent="Sensors"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast2" type="RayCast" parent="Sensors"]
+transform = Transform( -4.03841e-08, 0.92388, 0.382683, -1, -4.37114e-08, 0, 1.67276e-08, -0.382683, 0.92388, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast3" type="RayCast" parent="Sensors"]
+transform = Transform( -3.09086e-08, 0.707107, 0.707107, -1, -4.37114e-08, 0, 3.09086e-08, -0.707107, 0.707107, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast4" type="RayCast" parent="Sensors"]
+transform = Transform( -1.67276e-08, 0.382683, 0.92388, -1, -4.37114e-08, 0, 4.03841e-08, -0.92388, 0.382683, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast5" type="RayCast" parent="Sensors"]
+transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast6" type="RayCast" parent="Sensors"]
+transform = Transform( 2.34861e-08, -0.5373, 0.843391, -1, -4.37114e-08, 0, 3.68658e-08, -0.843391, -0.5373, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast7" type="RayCast" parent="Sensors"]
+transform = Transform( 3.58063e-08, -0.819152, 0.573576, -1, -4.37114e-08, 0, 2.50718e-08, -0.573576, -0.819152, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast8" type="RayCast" parent="Sensors"]
+transform = Transform( 4.26753e-08, -0.976296, 0.216439, -1, -4.37114e-08, 0, 9.46087e-09, -0.216439, -0.976296, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast9" type="RayCast" parent="Sensors"]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast10" type="RayCast" parent="Sensors"]
+transform = Transform( 4.03841e-08, -0.923879, -0.382684, -1, -4.37114e-08, 0, -1.67276e-08, 0.382684, -0.923879, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast11" type="RayCast" parent="Sensors"]
+transform = Transform( 3.09086e-08, -0.707107, -0.707107, -1, -4.37114e-08, 0, -3.09086e-08, 0.707107, -0.707107, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast12" type="RayCast" parent="Sensors"]
+transform = Transform( 1.67276e-08, -0.382683, -0.923879, -1, -4.37114e-08, 0, -4.03841e-08, 0.923879, -0.382683, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast13" type="RayCast" parent="Sensors"]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast14" type="RayCast" parent="Sensors"]
+transform = Transform( -1.67276e-08, 0.382683, -0.923879, -1, -4.37114e-08, 0, -4.03841e-08, 0.923879, 0.382683, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast15" type="RayCast" parent="Sensors"]
+transform = Transform( -3.09086e-08, 0.707107, -0.707107, -1, -4.37114e-08, 0, -3.09086e-08, 0.707107, 0.707107, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="RayCast16" type="RayCast" parent="Sensors"]
+transform = Transform( -4.03841e-08, 0.923879, -0.382683, -1, -4.37114e-08, 0, -1.67276e-08, 0.382683, 0.923879, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+
+[node name="Body" type="KinematicBody" parent="."]
+collision_layer = 2
+axis_lock_motion_y = true
+move_lock_y = true
+
+[node name="SensorZone" type="MeshInstance" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+mesh = SubResource( 5 )
+
+[node name="Mesh" type="MeshInstance" parent="Body"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.3, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Body"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.3, 0 )
+shape = SubResource( 2 )
+
+[node name="RemoteTransform" type="RemoteTransform" parent="Body"]
+remote_path = NodePath("../../Sensors")

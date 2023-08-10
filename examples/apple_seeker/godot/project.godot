@@ -1,0 +1,65 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Object",
+"class": "Communication",
+"language": "GDScript",
+"path": "res://addons/reinforcement_learning/rl_environment/communication.gd"
+}, {
+"base": "Object",
+"class": "PhysicsFramesTimer",
+"language": "GDScript",
+"path": "res://addons/reinforcement_learning/rl_environment/physics_frames_timer.gd"
+}, {
+"base": "Spatial",
+"class": "RLAgent",
+"language": "GDScript",
+"path": "res://addons/reinforcement_learning/rl_agent.gd"
+}, {
+"base": "Spatial",
+"class": "RLEnvWorld",
+"language": "GDScript",
+"path": "res://addons/reinforcement_learning/rl_env_world.gd"
+}, {
+"base": "Spatial",
+"class": "RLEnvironment",
+"language": "GDScript",
+"path": "res://addons/reinforcement_learning/rl_environment/rl_environment.gd"
+} ]
+_global_script_class_icons={
+"Communication": "res://addons/reinforcement_learning/icons/custom_node_icon.png",
+"PhysicsFramesTimer": "res://addons/reinforcement_learning/icons/custom_node_icon.png",
+"RLAgent": "res://addons/reinforcement_learning/icons/agent_node_icon.png",
+"RLEnvWorld": "res://addons/reinforcement_learning/icons/world_node_icon.png",
+"RLEnvironment": "res://addons/reinforcement_learning/icons/env_node_icon.png"
+}
+
+[application]
+
+config/name="Godot"
+run/main_scene="res://Environment.tscn"
+config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/reinforcement_learning/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
