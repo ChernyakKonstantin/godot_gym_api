@@ -1,24 +1,20 @@
 import json
 import socket
-from collections import defaultdict
-from io import BytesIO
-from time import time
 from typing import Any, Dict, Tuple
 
 import numpy as np
-from PIL import Image
 
 
 class GodotClient:
+    # Predefined keys to enable consistency with Godot application.
     STATUS_KEY = "status"
     CONFIG_KEY = "config"
     RESET_KEY = "reset"
     ACTION_KEY = "action"
     OBSERVATION_KEY = "observation"
-
-    IMAGE_DIMS = (240, 360, 3)
-
-    TIMEOUT_EXCEEDED = -1
+    WORLD_KEY = "world"
+    AGENT_KEY = "agent"
+    ENVIRONMENT_KEY = "environment"
 
     def __init__(
         self,
@@ -75,6 +71,7 @@ class GodotClient:
         """
         Check if server is started.
         """
+        # The value under `STATUS_KEY` has no meaning.
         request = {self.STATUS_KEY: 1}
         try:
             self.request(request, response_is_required=False)
@@ -82,17 +79,17 @@ class GodotClient:
         except ConnectionRefusedError:
             return False
 
-    def configure(self, config: Dict[str, Any]) -> bool:
+    def configure(self, config: Dict[str, Any]):
         """
         Configure the engine.
         """
         request = {self.CONFIG_KEY: config}
         return self.request(request, response_is_required=False)
 
-    def request_step(
+    def step(
             self,
-            action: Dict[str, Any],
-            requested_observation: Tuple[int],
+            action: Any,
+            requested_observation: Dict[str, Any],
         ) -> Dict[str, Any]:
         """
         Request engine to perform given action and return specified observations.
@@ -106,11 +103,12 @@ class GodotClient:
 
     def reset(
             self,
-            requested_observation: Tuple[int],
+            requested_observation: Dict[str, Any],
         ) -> Dict[str, Any]:
         """
         Request engine to reset environment and return specified observations.
         """
+        # The value under `STATUS_KEY` has no meaning.
         request = {
             self.RESET_KEY: 1,
             self.OBSERVATION_KEY: requested_observation,
