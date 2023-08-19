@@ -4,7 +4,7 @@ import numpy as np
 from gymnasium import spaces
 
 from godot_env_wrapper import GodotEnvironment
-
+import protobuf_message_module
 
 class AppleSeekerEnv(GodotEnvironment):
     def __init__(
@@ -13,7 +13,7 @@ class AppleSeekerEnv(GodotEnvironment):
         engine_chunk_size: int = 65536,
         episode_length: int = 500,
     ):
-        super().__init__(engine_address, engine_chunk_size)
+        super().__init__(protobuf_message_module, engine_address, engine_chunk_size)
         self._episode_length = episode_length
         # Define observation space in accordance to the agent in Godot app.
         self._max_distance = 5

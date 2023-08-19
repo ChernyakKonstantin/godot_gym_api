@@ -20,8 +20,5 @@ func _on_catch_apple(_body):
 	apple_caught = true
 
 # The method does not depend on `observation_request` argument.
-func get_data(observation_request):
-	var data = {
-		"apple_caught": apple_caught,
-	}
-	return data
+func get_data(observation_request, storage) -> void:
+	storage.set_apple_caught(apple_caught)

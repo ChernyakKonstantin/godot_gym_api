@@ -18,15 +18,19 @@ class GodotClient:
 
     def __init__(
         self,
+        protobuf_message_module,
         engine_address: Tuple[str, int],
         chunk_size: int = 65536
     ) -> None:
         """
         Simulator engine client class.
         It requests for current state and send the RL-agent action.
+
+        protobuf_message_module: module to load protobuf message from.
         engine_address: tuple of (`IP-address`, `port`).
         chunk_size: int: size of the chunk to receive response from engine.
         """
+        self.protobuf_message_module = protobuf_message_module
         self.engine_address = engine_address
         self.chunk_size = chunk_size
 
@@ -36,11 +40,12 @@ class GodotClient:
         value = np.frombuffer(raw_value, dtype=np.int32)[0]
         return data[4:], value
 
-    def _get_json(self, data: bytes) -> Tuple[bytes, Dict[str, Any]]:
+    def _get_protobuf(self, data: bytes) -> Any:
         data, buffer_size = self._get_int32(data)
         raw_value = data[:buffer_size]
-        value = json.loads(raw_value.decode("utf-8"))
-        return data[buffer_size:], value
+        value = self.protobuf_message_module.Message()
+        value.ParseFromString(raw_value)
+        return value
 
     def _get_data_from_stream(self, connection: socket.socket) -> bytes:
         chunks = b''
@@ -53,8 +58,14 @@ class GodotClient:
 
     def _get_response(self, connection: socket.socket) -> Dict[str, Any]:
         data = self._get_data_from_stream(connection)
-        data, respose_json = self._get_json(data)
-        return respose_json
+        response_protobuf = self._get_protobuf(data)
+        agent_data_keys = [f.name for f in response_protobuf.agent_data.DESCRIPTOR.fields]
+        world_data_keys = [f.name for f in response_protobuf.world_data.DESCRIPTOR.fields]
+        response = {
+            self.AGENT_KEY: {k: getattr(response_protobuf.agent_data, k) for k in agent_data_keys},
+            self.WORLD_KEY: {k: getattr(response_protobuf.world_data, k) for k in world_data_keys},
+        }
+        return response
 
     # TODO: implement timeout and return False if timeout is exceeded.
     def request(self, request: Dict[str, Any], response_is_required: bool = True) -> Dict[str, Any]:

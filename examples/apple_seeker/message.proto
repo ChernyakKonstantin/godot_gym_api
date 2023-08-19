@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+message WorldData {
+	bool apple_caught = 1;
+}
+
+message AgentData {
+	repeated float distances_to_obstacle = 1;
+	repeated float distances_to_target = 2;
+}
+
+
+message Message {
+	AgentData agent_data = 1;
+	WorldData world_data = 2;
+}

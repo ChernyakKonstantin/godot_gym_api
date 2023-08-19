@@ -50,7 +50,7 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/reinforcement_learning/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/protobuf/plugin.cfg", "res://addons/reinforcement_learning/plugin.cfg" )
 
 [gui]
 

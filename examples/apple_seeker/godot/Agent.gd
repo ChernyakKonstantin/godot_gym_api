@@ -32,7 +32,7 @@ func reset(new_position):
 	body.set_global_translation(new_position)
 
 # The method does not depend on `observation_request` argument.
-func get_data(observation_request):
+func get_data(observation_request, storage) -> void:
 	var distances_to_obstacle = []
 	var distances_to_target = []
 	for ray in sensors.get_children():
@@ -42,13 +42,8 @@ func get_data(observation_request):
 			distance = ray.global_translation.distance_to(ray.get_collision_point())
 			if ray.get_collider() == target:
 				distance_to_target = distance
-		distances_to_obstacle.append(float(distance))
-		distances_to_target.append(float(distance_to_target))
-	var data = {
-		"distances_to_obstacle": distances_to_obstacle,
-		"distances_to_target": distances_to_target,
-	}
-	return data
+		storage.add_distances_to_obstacle(float(distance))
+		storage.add_distances_to_target(float(distance_to_target))
 	
 func set_action(action):
 	current_action = action

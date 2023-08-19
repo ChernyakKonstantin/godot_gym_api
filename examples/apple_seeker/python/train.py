@@ -24,7 +24,7 @@ def train():
         AppleSeekerEnv,
         engine_address=(ADDRESS, PORT)
     )
-    env = make_vec_env(env_fn, n_envs=1)
+    env = make_vec_env(env_fn, n_envs=1, seed=0)
 
     model = PPO(
         "MultiInputPolicy",

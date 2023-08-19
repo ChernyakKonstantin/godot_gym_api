@@ -35,23 +35,10 @@ func _read_request() -> Dictionary:
 	else:
 		return {}
 
-func put_json(value):
-	# value can be Array or Dictionary
-	var value_: PoolByteArray = JSON.print(value).to_utf8() # Encode to bytes
-	connection.put_32(value_.size())  # Data lenght in bytes
-	connection.put_data(value_)
-
-#func put_images(value: Dictionary):
-#	connection.put_32(DataType.IMAGES)  # Data type
-#	connection.put_32(value.size())  # Number of keys
-#	for key in value.keys():
-#		connection.put_string(key)  # Image name
-#		connection.put_32(value[key].size())  # Number of images
-#		for image in value[key]:
-#			image.convert(Image.FORMAT_RGB8)
-#			var image_data = image.get_data()
-#			connection.put_32(image_data.size()) # Image length in bytes
-#			connection.put_data(image_data)
+func put_message(message):
+	var message_bytes = message.to_bytes()
+	connection.put_32(message_bytes.size())  # Data lenght in bytes
+	connection.put_data(message_bytes)
 
 func close():
 	have_connection = false

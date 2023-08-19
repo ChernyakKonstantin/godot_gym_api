@@ -1,6 +1,5 @@
 from typing import Any, Dict, Tuple
 
-import gym
 import gymnasium as gym
 
 from .godot_client import GodotClient
@@ -12,11 +11,12 @@ class GodotEnvironment(gym.Env):
 
     def __init__(
         self,
+        protobuf_message_module,
         engine_address: Tuple[str, int] = ("127.0.0.1", 9090),
         engine_chunk_size: int = 65536,
     ):
         super().__init__()
-        self._godot_client = GodotClient(engine_address, engine_chunk_size)
+        self._godot_client = GodotClient(protobuf_message_module, engine_address, engine_chunk_size)
         if not hasattr(self, "_requested_observation"):
             self._requested_observation = {}
 

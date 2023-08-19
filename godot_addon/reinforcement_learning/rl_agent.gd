@@ -16,5 +16,5 @@ func reset(new_position):
 func configure(agent_config: Dictionary):
 	pass
 
-func get_data(observation_request):
+func get_data(observation_request, storage) -> void:
 	push_error("One should override the method in his own subclass.")
