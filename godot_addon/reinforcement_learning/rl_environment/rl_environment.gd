@@ -97,7 +97,6 @@ func _send_response(observation_request: Dictionary):
 	if observation_request.has(WORLD_KEY):
 		var world_storage = message.new_world_data()
 		world.get_data(observation_request[WORLD_KEY], world_storage)
-	print("Apple caught: ", message.get_world_data().get_apple_caught())
 	communication.put_message(message)
 
 # Optional method to perform additional logic after response is sent.
