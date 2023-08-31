@@ -20,7 +20,7 @@ func server_poll():
 		connection = server.take_connection()
 		connection.set_no_delay(true)
 		print("\nConnection is taken.\n")
-		
+
 	if connection != null:
 		if connection.get_status() == StreamPeerTCP.STATUS_CONNECTED:
 			var request = _read_request()
@@ -29,7 +29,7 @@ func server_poll():
 		else:
 			print("\nConnection is lost!\n")
 			connection = null
-		
+
 func _read_request() -> Dictionary:
 	var request_package_size = connection.get_available_bytes()
 	var request_data = connection.get_utf8_string(request_package_size)
@@ -45,7 +45,6 @@ func put_message(message):
 	var message_bytes = message.to_bytes()
 	connection.put_32(message_bytes.size())  # Data lenght in bytes
 	connection.put_data(message_bytes)
-	print("Message lenght: ", message_bytes.size())
 
 func close():
 	have_connection = false
