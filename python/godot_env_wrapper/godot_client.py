@@ -33,26 +33,19 @@ class GodotClient:
         self.protobuf_message_module = protobuf_message_module
         self.engine_address = engine_address
         self.chunk_size = chunk_size
+        self.connection = socket.create_connection(self.engine_address)
 
-
-    def _get_int32(self, data: bytes) -> Tuple[bytes, int]:
-        raw_value = data[:4]
-        value = np.frombuffer(raw_value, dtype=np.int32)[0]
-        return data[4:], value
-
-    def _get_protobuf(self, data: bytes) -> Any:
-        data, buffer_size = self._get_int32(data)
-        raw_value = data[:buffer_size]
+    def _get_protobuf(self, raw_value: bytes) -> Any:
         value = self.protobuf_message_module.Message()
         value.ParseFromString(raw_value)
         return value
 
     def _get_data_from_stream(self, connection: socket.socket) -> bytes:
+        package_size = int.from_bytes(connection.recv(4), "little")
         chunks = b''
-        while True:
-            chunk = connection.recv(self.chunk_size)
-            if not chunk:
-                break
+        while len(chunks) < package_size:
+            recv_size = min(package_size, self.chunk_size)
+            chunk = connection.recv(recv_size)
             chunks += chunk
         return chunks
 
@@ -69,13 +62,13 @@ class GodotClient:
 
     # TODO: implement timeout and return False if timeout is exceeded.
     def request(self, request: Dict[str, Any], response_is_required: bool = True) -> Dict[str, Any]:
+        import time
         request_bytes = json.dumps(request).encode("utf-8")
-        with socket.create_connection(self.engine_address) as connection:
-            connection.sendall(request_bytes)
-            if response_is_required:
-                response = self._get_response(connection)
-            else:
-                response = None
+        self.connection.sendall(request_bytes)
+        if response_is_required:
+            response = self._get_response(self.connection)
+        else:
+            response = None
         return response
 
     def check_if_server_is_ready(self) -> bool:
