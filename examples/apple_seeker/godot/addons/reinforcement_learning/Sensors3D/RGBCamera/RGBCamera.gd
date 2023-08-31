@@ -14,5 +14,7 @@ func _ready():
 
 # -------- getters --------
 func get_data() -> Image:
-	return viewport_texture.get_data()
+	var data = viewport_texture.get_data()
+	data.convert(Image.FORMAT_RGB8)
+	return data
 	
