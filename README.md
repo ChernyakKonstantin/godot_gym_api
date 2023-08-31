@@ -1,5 +1,5 @@
 # About
-Godot-RL is an Open-Source framework to enable use of Godot 3.5 as an environment to train Reinforcement Learning (RL) algorithms.
+Godot-RL (Godot Reinforcement Learning) is an Open-Source framework to enable use of Godot 3.5 as an environment to train Reinforcement Learning (RL) algorithms.
 
 The framework is grown from a custom project on self-driving topic, so current ready-to-use sensors available are LIDAR and RGB-Camera.
 
@@ -9,7 +9,7 @@ Currently, there is support of Python as the programming language to implement t
 If one has a desire to implement the client for any other languages, submit pull request, please.
 
 # How It Works
-The application implemented in Godot serves as TCP-server, accepting requests from a client, that can be a `gym.Env` with `GodotClient` under hood.
+There is persistent TCP communication between a Godot application and Python implemented inside a `gym.Env` inhereted class. Thus, any of your favorite RL-frameworks are ready to work with it!
 
 # Installation
 
