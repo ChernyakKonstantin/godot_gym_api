@@ -3,7 +3,7 @@ from typing import Any, Dict, Tuple
 import numpy as np
 from gymnasium import spaces
 
-from godot_env_wrapper import GodotEnvironment
+from godot_gym_api import GodotEnvironment
 import protobuf_message_module
 
 class AppleSeekerEnv(GodotEnvironment):
