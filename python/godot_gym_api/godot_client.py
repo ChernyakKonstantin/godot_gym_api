@@ -1,7 +1,7 @@
 import json
 import socket
 from typing import Any, Dict, Tuple
-
+import time
 import numpy as np
 
 
@@ -33,7 +33,19 @@ class GodotClient:
         self.protobuf_message_module = protobuf_message_module
         self.engine_address = engine_address
         self.chunk_size = chunk_size
-        self.connection = socket.create_connection(self.engine_address)
+        self.connection = self._connect_to_server()
+
+    def _connect_to_server(self):
+        print("Waiting for Godot server launch.")
+        connection = None
+        while connection is None:
+            try:
+                connection = socket.create_connection(self.engine_address)
+            except ConnectionRefusedError:
+                time.sleep(1)
+                continue
+        print("Connection is established.")
+        return connection
 
     def _get_protobuf(self, raw_value: bytes) -> Any:
         value = self.protobuf_message_module.Message()
