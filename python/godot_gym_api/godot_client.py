@@ -7,7 +7,6 @@ import numpy as np
 
 class GodotClient:
     # Predefined keys to enable consistency with Godot application.
-    STATUS_KEY = "status"
     CONFIG_KEY = "config"
     RESET_KEY = "reset"
     ACTION_KEY = "action"
@@ -80,18 +79,6 @@ class GodotClient:
         response = self._get_response(self.connection)
         return response
 
-    def check_if_server_is_ready(self) -> bool:
-        """
-        Check if server is started.
-        """
-        # The value under `STATUS_KEY` has no meaning.
-        request = {self.STATUS_KEY: 1}
-        try:
-            self.request(request)
-            return True
-        except ConnectionRefusedError:
-            return False
-
     def configure(self, config: Dict[str, Any]):
         """
         Configure the engine.
@@ -121,7 +108,6 @@ class GodotClient:
         """
         Request engine to reset environment and return specified observations.
         """
-        # The value under `STATUS_KEY` has no meaning.
         request = {
             self.RESET_KEY: 1,
             self.OBSERVATION_KEY: requested_observation,

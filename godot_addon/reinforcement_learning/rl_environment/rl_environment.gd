@@ -3,7 +3,6 @@ class_name RLEnvironment, "../icons/env_node_icon.png"
 
 const ProtobufMessage = preload("res://protobuf_message.gd")
 
-const STATUS_KEY = "status"
 const CONFIG_KEY = "config"
 const RESET_KEY = "reset"
 const ACTION_KEY = "action"
@@ -82,8 +81,7 @@ func _on_got_connection(request: Dictionary):
 		yield(_step(request[ACTION_KEY]), "completed")
 	elif request.has(CONFIG_KEY):
 		_configure(request[CONFIG_KEY])
-	elif request.has(STATUS_KEY):
-		pass
+
 	if request.has(OBSERVATION_KEY):
 		_send_response(request[OBSERVATION_KEY])
 	else:
