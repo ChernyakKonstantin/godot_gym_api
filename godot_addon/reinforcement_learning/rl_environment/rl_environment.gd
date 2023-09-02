@@ -86,7 +86,9 @@ func _on_got_connection(request: Dictionary):
 		pass
 	if request.has(OBSERVATION_KEY):
 		_send_response(request[OBSERVATION_KEY])
-		_after_send_response()
+	else:
+		_send_response(Dictionary())
+	_after_send_response()
 
 func _send_response(observation_request: Dictionary):
 	var message = ProtobufMessage.Message.new()

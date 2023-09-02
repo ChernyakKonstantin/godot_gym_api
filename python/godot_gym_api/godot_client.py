@@ -61,14 +61,11 @@ class GodotClient:
         return response
 
     # TODO: implement timeout and return False if timeout is exceeded.
-    def request(self, request: Dict[str, Any], response_is_required: bool = True) -> Dict[str, Any]:
-        import time
+    def request(self, request: Dict[str, Any]) -> Dict[str, Any]:
         request_bytes = json.dumps(request).encode("utf-8")
-        self.connection.sendall(request_bytes)
-        if response_is_required:
-            response = self._get_response(self.connection)
-        else:
-            response = None
+        request_size = len(request_bytes)
+        self.connection.sendall(request_size.to_bytes(4, "little") + request_bytes)
+        response = self._get_response(self.connection)
         return response
 
     def check_if_server_is_ready(self) -> bool:
@@ -78,7 +75,7 @@ class GodotClient:
         # The value under `STATUS_KEY` has no meaning.
         request = {self.STATUS_KEY: 1}
         try:
-            self.request(request, response_is_required=False)
+            self.request(request)
             return True
         except ConnectionRefusedError:
             return False
@@ -88,7 +85,7 @@ class GodotClient:
         Configure the engine.
         """
         request = {self.CONFIG_KEY: config}
-        return self.request(request, response_is_required=False)
+        return self.request(request)
 
     def step(
             self,
