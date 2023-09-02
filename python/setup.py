@@ -12,8 +12,9 @@ setup_kwargs = {
 }
 
 install_requires = [
-    "gymnasium==0.29.0",
-    "numpy==1.24.4",
+    "gymnasium",
+    "numpy",
+    "protobuf",
 ]
 
 if __name__ == "__main__":
