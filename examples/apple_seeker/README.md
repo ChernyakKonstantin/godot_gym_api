@@ -1,3 +1,6 @@
+# Before launch
+Copy-paste `./godot_addon/reinforcement_learning` directory to `examples/apple_seeker/godot/addons` directory and activate the addon in the project settings.
+
 # Using protobuf
 Protobuf support is made with [Godobuf](https://github.com/oniksan/godobuf) addon.
 
