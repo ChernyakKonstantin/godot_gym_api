@@ -12,8 +12,7 @@ There is persistent TCP communication between a Godot application and Python imp
 # Installation
 ## In Godot
 1. Install `protobuf` into your OS following [Protocol Buffers repository](https://github.com/protocolbuffers/protobuf/releases).
-2. Install `godobuf` plugin into Godot, follow instruction in the [Godobuf repository](https://github.com/oniksan/godobuf).
-3. Currently there is no plugin in Godot Assets Library. One should copy-paste `godot_addon` content into `addons` directory of his own project and enable the `Reinforcement Learning` plugin in `Project/Project Settings/Plugins`.
+2. Copy-paste `godot_addon` content into `addons` directory of his own project and enable the `Reinforcement Learning` and `Godobuf` plugins in `Project/Project Settings/Plugins`.
 ## In Python
 Currently, there is local installation only. To install, perform the following command from the repo root:
 ```
