@@ -106,7 +106,14 @@ class GodotClient:
             requested_observation: Dict[str, Any],
         ) -> Dict[str, Any]:
         """
-        Request engine to reset environment and return specified observations.
+        Request Godot app to reset environment.
+
+        Args:
+            requested_observation (Dict[str, Any]): 
+            
+        Returns:
+            Dict[str, Any]
+
         """
         request = {
             self.RESET_KEY: 1,

@@ -21,10 +21,22 @@ class GodotEnvironment(gym.Env):
             self._requested_observation = {}
 
     def _godot_step(self, action: Any) -> Dict[str, Any]:
+        """Wrapper over `GodotClient.step`.
+        
+        The wrapper substitutues `requested_observation` argument with `self._requested_observation`.
+        """
+
         return self._godot_client.step(action, self._requested_observation)
 
     def _godot_reset(self) -> Dict[str, Any]:
+        """Wrapper over `GodotClient.reset`.
+
+        The wrapper substitutues `requested_observation` argument with `self._requested_observation`.
+        """
+
         return self._godot_client.reset(self._requested_observation)
 
     def _godot_configure(self, config: Dict[str, Any]):
+        """Wrapper over `GodotClient.configure`."""
+
         self._godot_client.configure(config)
