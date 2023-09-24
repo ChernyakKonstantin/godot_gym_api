@@ -11,6 +11,7 @@ func reset():
 	apple.set_global_translation(sample_initial_position())
 	
 func sample_initial_position() -> Vector3:
+	# The method samples a random position within specified boundaries.
 	var x = rand_range(-4, 4)
 	var y = 0.55
 	var z = rand_range(-4, 4)
