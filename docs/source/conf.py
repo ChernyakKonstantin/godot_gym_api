@@ -37,6 +37,8 @@ release = "1.1"
 extensions = [
     "sphinx.ext.duration",
     "sphinx.ext.autodoc",
+    "sphinx_tabs.tabs",
+    "sphinxcontrib.napoleon",
 ]
 
 # Add any paths that contain templates here, relative to this directory.

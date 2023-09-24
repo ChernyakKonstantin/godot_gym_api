@@ -28,10 +28,12 @@ Main features
 
 
 User Guide
---------
+----------
 
 .. toctree::
+   :maxdepth: 1
+
    installation   
-   godot
-   python
-   example
+   godot/index
+   python/index
+   examples/index
