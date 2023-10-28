@@ -11,7 +11,7 @@ Description
 -----------
 
 This class provides interface to set an agent action, to obtain the agent observation, 
-to configure and to reset the agent. User must override the method to implement own agent.
+to configure and to reset the agent. User must override the class to implement own agent.
 
 In **GodotGymAPI** ``RLAgent`` is considered as top-level controller over object that interacts the ``RLEnvWorld`` 
 and sensors those percieve the ``RLEnvWorld``.
