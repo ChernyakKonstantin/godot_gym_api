@@ -5,7 +5,7 @@ RLEnvWorld
 < `Node <https://docs.godotengine.org/en/3.5/classes/class_node.html#class-node>`_ 
 < `Object <https://docs.godotengine.org/en/3.5/classes/class_object.html#class-object>`_
 
-Base class for a world that RLAgent interacs with.
+Base class for a world that ``RLAgent`` interacs with.
 
 Description
 -----------
