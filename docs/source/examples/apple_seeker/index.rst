@@ -41,8 +41,10 @@ Steps
 
 .. toctree::
     :maxdepth: 1
-
+    
+    project
     installation
+    message_proto
     godot_app
     gym_env
     agent_training

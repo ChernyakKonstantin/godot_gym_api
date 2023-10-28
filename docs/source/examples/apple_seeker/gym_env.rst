@@ -1,5 +1,5 @@
 Creating Gym Environment
-======================
+========================
 
 In this step, we define ``gym.Env`` class that serves as interface between a Reinforcement Learning algorithm 
 and the Godot application.

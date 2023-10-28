@@ -2,21 +2,20 @@ Installation
 ============
 
 1. Install ``protobuf`` into your OS following 
-`Protocol Buffers repository <https://github.com/protocolbuffers/protobuf/releases>`_.
+`Protocol Buffers repository <https://github.com/protocolbuffers/protobuf/releases>`_ if you do not have one.
 
-2. To install Python package, run the following command from your terminal 
-(it is strongly recomended to use a python virtual environment):
+2. Create and activate a virtual environment *(recomended)*.
+
+3. Install Python package with the following command from your terminal:
 
 .. code-block:: bash
 
    pip3 install git+https://github.com/ChernyakKonstantin/godot_gym_api.git
 
-3. Create a project in Godot. For this tutorial, the project name is *AppleSeeker*.
-
-4. To install Godot addons to your project, run the following command from your terminal:
+3. Install Godot addons to your project with the following command from your terminal:
 
 .. code-block:: bash
 
-   godot_gym_api install_addon <PATH_TO_YOUR_GODOT_PROJECT>
+   godot_gym_api install_addon <YOUR_PATH>/apple_seeker/godot
 
-5. Enable the ``Reinforcement Learning`` and ``Godobuf`` plugins in Godot through ``Project/Project Settings/Plugins`` tab.
+4. Enable the ``Reinforcement Learning`` and ``Godobuf`` plugins in Godot through ``Project/Project Settings/Plugins`` tab.

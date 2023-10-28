@@ -1,13 +1,25 @@
 Creating Godot Application
 ==========================
 
-1. Download predefined assets to create the environment from `here <>`_.
-2. Copy-paste the ``assets`` folder into your Godot project directory.
+In this step, we will create our 3D-environment in Godot. 
+
+Download predefined assets to create the environment from `here <https://drive.google.com/drive/folders/11WHN71MlsSQczIingNdGwSnW6G2fU5sU?usp=drive_link>`_ 
+and copy-paste the ``assets`` directory into your Godot project directory. 
+
+.. note::
+    We exclude the process of the assets creating from the tutorial scope. 
 
 Creating World
-++++++++++++++
+--------------
 
-1. In scene tree click *Other node*.
+Now we are going to create a *World*. 
+In **Godot Gym API** *World* (``RLEnvWorld`` node) is assumed to be everything in the environment 
+the agent can interact with. For this tutotial, the *World* is a room with an apple inside. 
+The apple can be located anywhere inside the room and its location is assigned on the *World* reset.
+
+1. Create a new scene with ``World.tscn`` name.
+
+2. In scene tree click *Other node*.
 
 .. image:: ./images/add_root_node.png
    :width: 200
@@ -21,15 +33,12 @@ Creating World
 
 4. Drag and drop ``Room.tscn`` and ``Apple.tcsn`` from ``assets`` directory to *World* node children. 
 
-.. note::
-    We exclude the process of assets creation from the tutorial scope. You can examine the assets on your own.
-
-4. Detach *World* node default script.
+5. Detach *World* node default script.
 
 .. image:: ./images/detach_rl_env_script.png
    :width: 200
 
-5. Add new script and save it.
+5. Add new script and save it with ``World.gd`` name.
 
 .. image:: ./images/attach_rl_env_script.png
    :width: 200
@@ -69,8 +78,8 @@ Creating World
 
 Let's examine what is happening here.
 
-By default, ``RLEnvWorld.reset`` method does nothing. Here, we override it to reset ``apple_caught`` flag
-and place an apple randomly. 
+By default, ``RLEnvWorld.reset`` method does nothing. Here, we override it 
+to reset ``apple_caught`` flag and place an apple randomly. 
 
 .. code-block:: gdscript
 
@@ -81,8 +90,8 @@ and place an apple randomly.
 By default, ``RLEnvWorld.get_data`` method raise an error, since no data to return is specified.
 Here, we override it to set ``storage.apple_caught`` field with ``apple_caught`` value. 
 ``storage`` is a field in protobuf message we have defined earlier. 
-In case you define various possible observations but you want to experiment with particular ones, you can
-define logic of the storage filling with help of observation keys in ``observation_request``.
+In case you define various possible observations but you want to experiment with particular ones, 
+you can define logic of the storage filling with help of observation keys in ``observation_request``.
 
 .. code-block:: gdscript
 
@@ -92,7 +101,26 @@ define logic of the storage filling with help of observation keys in ``observati
 
 
 Creating Agent
-++++++++++++++
+--------------
+
+Now we are going to create an *Agent*. 
+In **Godot Gym API** *Agent* (``RLAgent`` node) is assumed stay in the same position, 
+while its children can move. This done to enable the agent control different node types
+(e.g., ``KinematicBody`` or ``VehcileBody``).
+
+1. Create a new scene with ``Agent.tscn`` name.
+
+2. Search for ``RLAgent`` node and create it.
+
+3. Rename the node. In this tutorial, the node name is *Agent*.
+
+4. Add a ``Spatial`` node to *Agent* children and name it as *Sensors*. 
+Add 16 ``RayCast`` node to *Sensors* children and enable them in **Inspector** tab. 
+Locate the `RayCast` in circle as shown on image below.
+
+**TODO: add picture**
+
+5. Detach *Agent* default script and create the new one with ``Agent.gd`` name.
 
 .. code-block:: gdscript
 
@@ -150,7 +178,7 @@ Creating Agent
     func _physics_process(delta):
         move_body(delta)
 
-    # The definition of `Body._physics_process` method to avoid extra scripts for salke of simplicity.
+    # The definition of `Body._physics_process` method to avoid extra scripts for sake of simplicity.
     func move_body(delta):
         var direction = Vector3.ZERO
         
@@ -172,9 +200,8 @@ Creating Agent
         velocity = body.move_and_slide(velocity, Vector3.UP)
 
 
-
 Creating Environment
-++++++++++++++++++++
+--------------------
 
 .. code-block:: gdscript
 
