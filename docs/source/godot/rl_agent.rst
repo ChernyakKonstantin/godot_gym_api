@@ -13,6 +13,20 @@ Description
 This class provides interface to set an agent action, to obtain the agent observation, 
 to configure and to reset the agent. User must override the method to implement own agent.
 
+In **GodotGymAPI** ``RLAgent`` is considered as top-level controller over object that interacts the ``RLEnvWorld`` 
+and sensors those percieve the ``RLEnvWorld``.
+
+Typical example of an Agent scene structure is:
+
+.. code-block::
+
+    Agent (inherited from RLAgent)
+    |___Robot (e.g. inherited from VehicleBody)
+    |___Sensors (e.g. Spatial)
+        |___RGBCamera
+        |___RayCast
+
+
 Method Descriptions
 -------------------
 
@@ -45,8 +59,8 @@ Method Descriptions
 
 .. function:: (void) get_data(observation_request, storage)
 
-    Method to be overriden to implement logic on filling protobuf message `AgentData` field to send data from Godot.
+    Method to be overriden to implement logic on filling protobuf message ``AgentData`` field to send data from Godot.
 
     Args:
         observation_request: Any structure containing information about requested observations.
-        storage: `AgentData` field from protobuf message to send data from Godot.
+        storage: ``AgentData`` field from protobuf message to send data from Godot.
