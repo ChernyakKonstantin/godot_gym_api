@@ -55,7 +55,7 @@ Method Descriptions
     Optional method to implement logic on agent configuration.
     
     Args:
-        agent_config (Dictionary): Agent configuration.
+        agent_config: Agent configuration.
 
 .. function:: (void) get_data(observation_request, storage)
 
