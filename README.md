@@ -1,7 +1,7 @@
 # About
 Godot Gym API is an Open-Source framework to enable use of Godot 3.5 as an environment to train Reinforcement Learning (RL) algorithms.
 
-Documentation available [here](https://chernyakkonstantin.github.io/godot_gym_api_docs/).
+Documentation available [here](https://chernyakkonstantin.github.io/godot_gym_api/build/).
 
 # Programming Languages Support
 Currently, there is support of Python as the programming language to implement the RL-algorithms. In Python, the environmnet provides `gym` / `gymnasium` interface.
