@@ -11,6 +11,8 @@ User must override the class to set requered properties and initialization.
 Description
 -----------
 
+This is top-level class that have ``RLAgent`` and ``RLEnvWorld`` as children nodes.
+
 This class implements logic on:
 
 1. Establishing connection between Godot app and client code (e.g. Python script).
@@ -20,6 +22,14 @@ to keep environemnt state while sending data.
 
 3. Managing requests from client. The response is send only for observation request. Configuration request are not responded. 
 Observation request is usually in conjunction with action request, forming environment step request.
+
+Typical example of an project structure is:
+
+.. code-block::
+
+    Environment (inherited from RLEnvironment)
+    |___Agent (inherited from RLAgent)
+    |___World (inherited from RLEnvWorld)
 
 Constants
 ---------
