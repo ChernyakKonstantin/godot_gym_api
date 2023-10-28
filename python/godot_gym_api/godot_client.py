@@ -1,11 +1,20 @@
 import json
 import socket
-from typing import Any, Dict, Tuple
 import time
-import numpy as np
+from types import ModuleType
+from typing import Any, Dict, Tuple
 
 
 class GodotClient:
+    """Simulator engine client class.
+
+    The class sends actions for RL-agent to a Godot app and gets current state from the Godot app.
+    The class establish a persistent TCP connection.
+    The class sends requests in form of JSON-files.
+    The class recieve data in form of Protobuf messages.
+
+    """
+
     # Predefined keys to enable consistency with Godot application.
     CONFIG_KEY = "config"
     RESET_KEY = "reset"
@@ -17,24 +26,25 @@ class GodotClient:
 
     def __init__(
         self,
-        protobuf_message_module,
+        protobuf_message_module: ModuleType,
         engine_address: Tuple[str, int],
-        chunk_size: int = 65536
+        chunk_size: int = 65536,
     ) -> None:
-        """
-        Simulator engine client class.
-        It requests for current state and send the RL-agent action.
+        """Initialize Godot Client.
 
-        protobuf_message_module: module to load protobuf message from.
-        engine_address: tuple of (`IP-address`, `port`).
-        chunk_size: int: size of the chunk to receive response from engine.
+        Args:
+            protobuf_message_module (ModuleType): A module to load protobuf message from.
+            engine_address (Tuple[str, int]): Tuple of (`IP-address`, `port`).
+            chunk_size (int): Size of the chunk to receive response from engine.
+
         """
         self.protobuf_message_module = protobuf_message_module
         self.engine_address = engine_address
         self.chunk_size = chunk_size
         self.connection = self._connect_to_server()
 
-    def _connect_to_server(self):
+    def _connect_to_server(self) -> None:
+        """Repeatedly try to establish a connection to Godot app."""
         print("Waiting for Godot server launch.")
         connection = None
         while connection is None:
@@ -47,52 +57,92 @@ class GodotClient:
         return connection
 
     def _get_protobuf(self, raw_value: bytes) -> Any:
+        """Parse bytes to restore Protobuf message.
+
+        Args:
+            raw_value (bytes): Raw data from TCP stream.
+
+        Returns:
+            Any: Restored Protobuf message.
+
+        """
         value = self.protobuf_message_module.Message()
         value.ParseFromString(raw_value)
         return value
 
-    def _get_data_from_stream(self, connection: socket.socket) -> bytes:
-        package_size = int.from_bytes(connection.recv(4), "little")
-        chunks = b''
+    def _get_data_from_stream(self) -> bytes:
+        """Read data from TCP stream.
+
+        Returns:
+            bytes: Raw data from TCP stream.
+
+        """
+        package_size = int.from_bytes(self.connection.recv(4), "little")
+        chunks = b""
         while len(chunks) < package_size:
             recv_size = min(package_size, self.chunk_size)
-            chunk = connection.recv(recv_size)
+            chunk = self.connection.recv(recv_size)
             chunks += chunk
         return chunks
 
-    def _get_response(self, connection: socket.socket) -> Dict[str, Any]:
-        data = self._get_data_from_stream(connection)
+    def _get_response(self) -> Dict[str, Any]:
+        """Read response from Godot app.
+
+        The method can accept only Protobuf messages as Godot response.
+
+        Returns:
+            Dict[str, Any]: Received Protobuf message with Agent and World observations.
+
+        """
+        data = self._get_data_from_stream()
         response_protobuf = self._get_protobuf(data)
-        agent_data_keys = [f.name for f in response_protobuf.agent_data.DESCRIPTOR.fields]
-        world_data_keys = [f.name for f in response_protobuf.world_data.DESCRIPTOR.fields]
         response = {
-            self.AGENT_KEY: {k: getattr(response_protobuf.agent_data, k) for k in agent_data_keys},
-            self.WORLD_KEY: {k: getattr(response_protobuf.world_data, k) for k in world_data_keys},
+            self.AGENT_KEY: response_protobuf.agent_data,
+            self.WORLD_KEY: response_protobuf.world_data,
         }
         return response
 
     # TODO: implement timeout and return False if timeout is exceeded.
     def request(self, request: Dict[str, Any]) -> Dict[str, Any]:
+        """Send request to Godot app and get response.
+
+        Args:
+            request (Dict[str, Any]): Request.
+
+        Returns:
+            Dict[str, Any]: Response.
+
+        """
         request_bytes = json.dumps(request).encode("utf-8")
         request_size = len(request_bytes)
         self.connection.sendall(request_size.to_bytes(4, "little") + request_bytes)
-        response = self._get_response(self.connection)
+        response = self._get_response()
         return response
 
-    def configure(self, config: Dict[str, Any]):
-        """
-        Configure the engine.
+    def configure(self, config: Dict[str, Any]) -> None:
+        """Request engine to set configuration.
+
+        Args:
+            config (Dict[str, Any]): Configuration to be set.
+
         """
         request = {self.CONFIG_KEY: config}
-        return self.request(request)
+        _ = self.request(request)
 
     def step(
-            self,
-            action: Any,
-            requested_observation: Dict[str, Any],
-        ) -> Dict[str, Any]:
-        """
-        Request engine to perform given action and return specified observations.
+        self,
+        action: Any,
+        requested_observation: Dict[str, Any],
+    ) -> Dict[str, Any]:
+        """Request engine to perform given action and return new observations.
+
+        Args:
+            action (Any): Action to perform by Agent.
+            requested_observation (Dict[str, Any]): Requested observations from World and Agent.
+
+        Returns:
+            Dict[str, Any]: New observation.
+
         """
         request = {
             self.ACTION_KEY: action,
@@ -102,17 +152,17 @@ class GodotClient:
         return response
 
     def reset(
-            self,
-            requested_observation: Dict[str, Any],
-        ) -> Dict[str, Any]:
+        self,
+        requested_observation: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Request Godot app to reset environment.
 
         Args:
-            requested_observation (Dict[str, Any]): 
-            
+            requested_observation (Dict[str, Any]): Requested observations from World and Agent.
+
         Returns:
-            Dict[str, Any]
+            Dict[str, Any]: Initial observation.
 
         """
         request = {
