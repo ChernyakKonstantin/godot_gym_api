@@ -16,7 +16,7 @@ This class provides communication with clients via TCP protocol.
 Signals
 -------
 
-.. attribute:: signal got_connection
+.. attribute:: (signal) got_connection
 
     The signal is emitted when incomming request is got in ``server_poll`` method.
 
