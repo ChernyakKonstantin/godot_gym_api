@@ -1,5 +1,5 @@
-Godot side
-==========
+Godot
+=====
 
 .. toctree::
     :maxdepth: 1
