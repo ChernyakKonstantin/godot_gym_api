@@ -9,3 +9,4 @@ This section describes Godot-related side of the framework.
     rl_agent
     rl_env_world
     rl_environment
+    communication
