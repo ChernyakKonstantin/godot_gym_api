@@ -6,3 +6,4 @@ Godot
     
     rl_agent
     rl_env_world
+    rl_environment
