@@ -1,6 +1,8 @@
 Godot
 =====
 
+This section describes Godot-related side of the framework.
+
 .. toctree::
     :maxdepth: 1
     
