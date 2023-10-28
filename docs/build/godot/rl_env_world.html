@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RLEnvWorld &mdash; Godot Gym API 1.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=91e4a3f0"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="prev" title="RLAgent" href="rl_agent.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Godot Gym API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Godot</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rl_agent.html">RLAgent</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RLEnvWorld</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#method-descriptions">Method Descriptions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Godot Gym API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Godot</a></li>
+      <li class="breadcrumb-item active">RLEnvWorld</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/godot/rl_env_world.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rlenvworld">
+<h1>RLEnvWorld<a class="headerlink" href="#rlenvworld" title="Permalink to this heading"></a></h1>
+<p><strong>Inherits:</strong> <a class="reference external" href="https://docs.godotengine.org/en/3.5/classes/class_spatial.html">Spatial</a>
+&lt; <a class="reference external" href="https://docs.godotengine.org/en/3.5/classes/class_node.html#class-node">Node</a>
+&lt; <a class="reference external" href="https://docs.godotengine.org/en/3.5/classes/class_object.html#class-object">Object</a></p>
+<p>Base class for a world that <code class="docutils literal notranslate"><span class="pre">RLAgent</span></code> interacs with.</p>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>This class provides interface to obtain the world state (though we also call it as <cite>observation</cite>),
+to configure and to reset the world. User must override the class to implement own World.</p>
+<p>In <strong>GodotGymAPI</strong> <code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code> is considered as everything that <code class="docutils literal notranslate"><span class="pre">RLAgent</span></code> can percieve through sensors or interact with.
+World is considered to be the sandbox your agent play in. The world can have NPCs, logic on agent’s action response and etc.</p>
+</section>
+<section id="method-descriptions">
+<h2>Method Descriptions<a class="headerlink" href="#method-descriptions" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">(void)</span> <span class="pre">_ready()</span></span></dt>
+<dd><p>Called when the node is “ready”, i.e. when both the node and its children have entered the scene tree.
+If user overrides the method in own subclass the method is called anyway.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">(void)</span> <span class="pre">reset(arguments=null)</span></span></dt>
+<dd><p>Method to implement logic on world reset.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>arguments: Any structure containing information for world reset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">(void)</span> <span class="pre">configure(world_config:</span> <span class="pre">Dictionary)</span></span></dt>
+<dd><p>Optional method to implement logic on world configuration.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>world_config (Dictionary): World configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">(void)</span> <span class="pre">get_data(observation_request,</span> <span class="pre">storage)</span></span></dt>
+<dd><p>Method to be overriden to implement logic on filling protobuf message <code class="docutils literal notranslate"><span class="pre">WorldData</span></code> field to send data from Godot.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>observation_request: Any structure containing information about requested observations.
+storage: <code class="docutils literal notranslate"><span class="pre">WorldData</span></code> field from protobuf message to send data from Godot.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rl_agent.html" class="btn btn-neutral float-left" title="RLAgent" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ChernyakKonstantin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; Godot Gym API 1.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=91e4a3f0"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Creating protobuf message" href="message_proto.html" />
+    <link rel="prev" title="Project Creating" href="project.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Godot Gym API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../godot/index.html">Godot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Apple Seeker example</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#environment-description">Environment Description</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#steps">Steps</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="project.html">Project Creating</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="message_proto.html">Creating protobuf message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="godot_app.html">Creating Godot Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gym_env.html">Creating Gym Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="agent_training.html">Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="final.html">Final</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Godot Gym API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Apple Seeker example</a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/apple_seeker/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<p>1. Install <code class="docutils literal notranslate"><span class="pre">protobuf</span></code> into your OS following
+<a class="reference external" href="https://github.com/protocolbuffers/protobuf/releases">Protocol Buffers repository</a> if you do not have one.</p>
+<ol class="arabic simple" start="2">
+<li><p>Create and activate a virtual environment <em>(recomended)</em>.</p></li>
+<li><p>Install Python package with the following command from your terminal:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>git+https://github.com/ChernyakKonstantin/godot_gym_api.git
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Install Godot addons to your project with the following command from your terminal:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>godot_gym_api<span class="w"> </span>install_addon<span class="w"> </span>&lt;YOUR_PATH&gt;/apple_seeker/godot
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Enable the <code class="docutils literal notranslate"><span class="pre">Reinforcement</span> <span class="pre">Learning</span></code> and <code class="docutils literal notranslate"><span class="pre">Godobuf</span></code> plugins in Godot through <code class="docutils literal notranslate"><span class="pre">Project/Project</span> <span class="pre">Settings/Plugins</span></code> tab.</p></li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="project.html" class="btn btn-neutral float-left" title="Project Creating" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="message_proto.html" class="btn btn-neutral float-right" title="Creating protobuf message" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ChernyakKonstantin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

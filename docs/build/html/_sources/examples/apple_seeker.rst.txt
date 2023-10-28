@@ -1,0 +1,387 @@
+Apple Seeker example
+====================
+
+In this step-by-step tutorial, you will create your first complete RL-project with **Godot Gym API**.
+ By the end of tutorial you will have a trained agent capable of finding apples in the room,
+ as shown in the gif below.
+
+**TODO: Insert gif how trained agent behaves**.
+
+You will learn to:
+
+* Install **Godot Gym API** in Python and Godot.
+* Create an environment in Godot with help of **Godot Gym API** base classes.
+* Create Gym interface in Python with help of **Godot Gym API** base classes.
+* Esteblish a connection between Godot and Python.
+* Train your own agent with help of `Stable-Baselines3 library <https://github.com/DLR-RM/stable-baselines3>`_.
+
+.. note::
+    In this tutorial, it is assumed that you are already familiar with Godot. 
+    If you are new to Godot, first learn Godot basics from 
+    `this official tutorial series <https://docs.godotengine.org/en/3.5/getting_started/introduction/index.html>`_.
+
+.. note::
+    In this tutorial, *GDScript* language is used to code in Godot.
+
+The full example can be found 
+`here <https://github.com/ChernyakKonstantin/godot_gym_api/tree/main/examples/apple_seeker>`_.
+
+Environment Description
+-----------------------
+
+In this tutorial, we develop a simple environment, consisting of a room with a robot and an apple inside. 
+
+The robot has 16 sensors located in a circle. 
+These sensors measure the distance to the room walls and to the apple. 
+The robot can move *forward*, *backward*, *left*, *right* or *diagonally*.
+
+The robot task is to quickly reach the apple from any starting point.
+
+The apple can be located in any position in the room at the begging of an episode.
+
+Installation
+-----------
+
+1. Install ``protobuf`` into your OS following 
+`Protocol Buffers repository <https://github.com/protocolbuffers/protobuf/releases>`_.
+
+2. To install Python package, run the following command from your terminal 
+(it is strongly recomended to use a python virtual environment):
+
+.. code-block:: bash
+
+   pip3 install git+https://github.com/ChernyakKonstantin/godot_gym_api.git
+
+3. Create a project in Godot. For this tutorial, the project name is *AppleSeeker*.
+
+4. To install Godot addons to your project, run the following command from your terminal:
+
+.. code-block:: bash
+
+   godot_gym_api install_addon <PATH_TO_YOUR_GODOT_PROJECT>
+
+5. Enable the ``Reinforcement Learning`` and ``Godobuf`` plugins in Godot through ``Project/Project Settings/Plugins`` tab.
+
+Creating Godot Application
+--------------------------
+
+1. Download predefined assets to create the environment from `here <>`_.
+2. Copy-paste the ``assets`` folder into your Godot project directory.
+
+Creating World
+++++++++++++++
+
+1. In scene tree click *Other node*.
+
+.. image:: ./images/add_root_node.png
+   :width: 200
+
+2. Search for ``RLEnvWorld`` node and create it.
+
+.. image:: ./images/search_rl_env_node.png
+   :width: 600
+
+3. Rename the node. In this tutorial, the node name is *World*.
+
+4. Drag and drop ``Room.tscn`` and ``Apple.tcsn`` from ``assets`` directory to *World* node children. 
+
+.. note::
+    We exclude the process of assets creation from the tutorial scope. You can examine the assets on your own.
+
+4. Detach *World* node default script.
+
+.. image:: ./images/detach_rl_env_script.png
+   :width: 200
+
+5. Add new script and save it.
+
+.. image:: ./images/attach_rl_env_script.png
+   :width: 200
+
+.. image:: ./images/save_world_script.png
+   :width: 200
+
+6. Define *World* node behaviour in the node script as follows:
+
+.. code-block:: gdscript
+
+    extends RLEnvWorld
+
+    onready var apple = $Apple
+    onready var apple_caught: bool = false
+
+    func _ready():
+        apple.get_node("AppleCatchArea").connect("body_entered", self, "_on_catch_apple")
+        
+    func reset():
+        apple_caught = false
+        apple.set_global_translation(sample_initial_position())
+        
+    func sample_initial_position() -> Vector3:
+        # The method samples a random position within specified boundaries.
+        var x = rand_range(-4, 4)
+        var y = 0.55
+        var z = rand_range(-4, 4)
+        return Vector3(x, y, z)
+
+    func _on_catch_apple(_body):
+        apple_caught = true
+
+    # The method does not depend on `observation_request` argument.
+    func get_data(observation_request, storage) -> void:
+        storage.set_apple_caught(apple_caught)
+
+Let's examine what is happening here.
+
+By default, ``RLEnvWorld.reset`` method does nothing. Here, we override it to reset ``apple_caught`` flag
+and place an apple randomly. 
+
+.. code-block:: gdscript
+
+    func reset():
+        apple_caught = false
+        apple.set_global_translation(sample_initial_position())
+        
+By default, ``RLEnvWorld.get_data`` method raise an error, since no data to return is specified.
+Here, we override it to set ``storage.apple_caught`` field with ``apple_caught`` value. 
+``storage`` is a field in protobuf message we define later (whether later?).
+
+Creating Agent
+++++++++++++++
+
+.. code-block:: gdscript
+
+    extends RLAgent
+
+    const MOVE_RIGHT = 0
+    const MOVE_LEFT = 1
+    const MOVE_UP = 2
+    const MOVE_DOWN = 3
+
+    export var target_node_path: NodePath
+
+    var target
+
+    # The maximum distance of the agent sensors.
+    var max_sensor_distance = 5
+    # How fast the agent moves in meters per second.
+    var speed = 14
+    # Current velocity of the agent.
+    var velocity: Vector3 = Vector3.ZERO
+    # Current action the agent performs.
+    var current_action: int = -1
+
+    onready var body = $Body
+    onready var sensors = $Sensors
+
+    func _ready():
+        target = get_node(target_node_path)
+        print(target)
+        body.set_axis_lock(PhysicsServer.BODY_AXIS_LINEAR_Y, true)
+        
+    func reset(new_position):
+        velocity = Vector3.ZERO
+        current_action = -1
+        body.set_global_translation(new_position)
+
+    # The method does not depend on `observation_request` argument.
+    func get_data(observation_request, storage) -> void:
+        var distances_to_obstacle = []
+        var distances_to_target = []
+        for ray in sensors.get_children():
+            var distance: float = max_sensor_distance
+            var distance_to_target: float = max_sensor_distance
+            if ray.is_colliding():
+                distance = ray.global_translation.distance_to(ray.get_collision_point())
+                if ray.get_collider() == target:
+                    distance_to_target = distance
+            storage.add_distances_to_obstacle(float(distance))
+            storage.add_distances_to_target(float(distance_to_target))
+        
+    func set_action(action):
+        current_action = action
+
+    func _physics_process(delta):
+        move_body(delta)
+
+    # The definition of `Body._physics_process` method to avoid extra scripts for salke of simplicity.
+    func move_body(delta):
+        var direction = Vector3.ZERO
+        
+        if current_action == MOVE_RIGHT:
+            direction.x -= 1
+        elif current_action == MOVE_LEFT:
+            direction.x += 1
+        elif current_action == MOVE_UP:
+            direction.z += 1
+        elif current_action == MOVE_DOWN:
+            direction.z -= 1
+
+        if direction != Vector3.ZERO:
+            direction = direction.normalized()
+            body.look_at(body.translation + direction, Vector3.UP)
+
+        velocity.x = direction.x * speed
+        velocity.z = direction.z * speed
+        velocity = body.move_and_slide(velocity, Vector3.UP)
+
+
+
+Creating Environment
+++++++++++++++++++++
+
+.. code-block:: gdscript
+
+    extends RLEnvironment
+
+    func _ready():
+        world = $World
+        agent = $Agent
+        communication.start_server(9090, "127.0.0.1")
+
+    func _reset():
+        world.reset()
+        agent.reset(world.sample_initial_position())
+
+Creating Python client
+----------------------
+
+.. code-block:: python
+
+    from typing import Any, Dict, Tuple
+
+    import numpy as np
+    from gymnasium import spaces
+
+    from godot_gym_api import GodotEnvironment
+    import protobuf_message_module
+
+    class AppleSeekerEnv(GodotEnvironment):
+        def __init__(
+            self,
+            engine_address: Tuple[str, int] = ("127.0.0.1", 9090),
+            engine_chunk_size: int = 65536,
+            episode_length: int = 500,
+        ):
+            super().__init__(protobuf_message_module, engine_address, engine_chunk_size)
+            self._episode_length = episode_length
+            # Define observation space in accordance to the agent in Godot app.
+            self._max_distance = 5
+            self.observation_space = spaces.Dict(
+                spaces={
+                    "distances_to_obstacle": spaces.Box(
+                        low=0,
+                        high=self._max_distance,
+                        shape=[16,],
+                        dtype=np.float32,
+                    ),
+                    "distances_to_target": spaces.Box(
+                        low=0,
+                        high=self._max_distance,
+                        shape=[16,],
+                        dtype=np.float32,
+                    ),
+                },
+            )
+            # The example Godot app return all its observation for agent and world. There is no need to specife them.
+            self._requested_observation = {self.AGENT_KEY: [], self.WORLD_KEY: []}
+            # Define action space in accordance to the agent in Godot app.
+            self.action_space = spaces.Discrete(4)
+            # Set during reset
+            self._step_counter = None
+
+        def _observe(self, state: Dict[str, Dict[str, Any]]) -> Dict:
+            return {k: state[self.AGENT_KEY][k] for k in ["distances_to_obstacle", "distances_to_target"]}
+
+        def _is_terminated(self, state) -> bool:
+            episode_steps_limit_reached = self._step_counter == self._episode_length
+            apple_caught = state[self.WORLD_KEY]["apple_caught"]
+            return episode_steps_limit_reached or apple_caught
+
+        def _reward_function(self, state):
+            if state[self.WORLD_KEY]["apple_caught"]:
+                return 100
+            else:
+                return -min(state[self.AGENT_KEY]["distances_to_target"]) / self._max_distance
+
+        def step(self, action: np.ndarray) -> Tuple[np.ndarray, float, bool, dict]:
+            state = self._godot_step(action.item())
+            self._step_counter += 1
+            observation = self._observe(state)
+            terminated = self._is_terminated(state)
+            reward = self._reward_function(state)
+            return observation, reward, terminated, False, {}
+
+        def reset(self, *args, **kwargs) -> np.ndarray:
+            self._step_counter = 0
+            state = self._godot_reset()
+            observation = self._observe(state)
+            return observation, {}
+
+        def seed(self, *args, **kwargs):
+            pass
+
+        def render(self):
+            pass
+
+        def close(self):
+            pass
+
+
+Training
+--------
+
+.. code-block:: python
+
+    import os
+    from functools import partial
+
+    from stable_baselines3 import PPO
+    from stable_baselines3.common.callbacks import CheckpointCallback
+    from stable_baselines3.common.env_util import make_vec_env
+
+    from apple_seeker_env import AppleSeekerEnv
+
+    ADDRESS = "127.0.0.1"
+    PORT = 9090
+
+    LOG_DIR = "./logs/apple_seeker"
+    LOG_NAME = "PPO"
+    SUFFIX = "1"
+
+    TOTAL_TIMESTEPS = 150000
+    N_STEPS = 1000
+    CHECKPOINT_FREQUENCY = 1000
+    LR = 1e-3
+
+    def train():
+        env_fn = partial(
+            AppleSeekerEnv,
+            engine_address=(ADDRESS, PORT)
+        )
+        env = make_vec_env(env_fn, n_envs=1, seed=0)
+
+        model = PPO(
+            "MultiInputPolicy",
+            n_steps=N_STEPS,
+            env=env,
+            use_sde=False,
+            learning_rate=LR,
+            verbose=1,
+            device="cpu",
+            seed=0,
+            tensorboard_log=LOG_DIR,
+        )
+        model.learn(
+            callback=CheckpointCallback(
+                save_freq = CHECKPOINT_FREQUENCY,
+                save_path = os.path.join(LOG_DIR, LOG_NAME + "_" + SUFFIX, "checkpoints"),
+            ),
+            total_timesteps=TOTAL_TIMESTEPS,
+            tb_log_name=LOG_NAME,
+            progress_bar=True,
+        )
+        model.save(os.path.join(LOG_DIR, LOG_NAME + SUFFIX, "checkpoints", "last.zip"))
+
+    if __name__ == "__main__":
+        train()

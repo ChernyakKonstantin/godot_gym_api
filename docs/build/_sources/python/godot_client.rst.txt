@@ -1,0 +1,7 @@
+GodotClient
+===========
+
+.. autosummary::
+    :toctree: generated
+
+    godot_gym_api.GodotClient
