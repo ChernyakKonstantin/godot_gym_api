@@ -36,4 +36,5 @@ User Guide
    installation   
    godot/index
    python/index
+   godobuf/index
    examples/index

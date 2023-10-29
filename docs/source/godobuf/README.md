@@ -23,19 +23,8 @@ Godobuf is easy to use, does not require rebuilding the Godot, because it is wri
 - Any types
 - Default values option for fields
 
-## Installation
-
-1. Create a new project in Godot or use an existing project.
-2. Copy `addons` directory from Godobuf repository to your Gotot project directory.
-3. Choose in Menu `Project->Project Settings`.<br/>
-![Project->Project Settings](./readme-images/1.png)<br/>
-4. In `Project Settings` window choose `Plugins` tab.
-5. Find Godobuf plugin and set status `Active`.<br/>
-![Plugins](./readme-images/2.png)<br/>
-6. Close `Project Settings` window.
-7. The Godobuf panel will be displayed in the Godot.<br/>
-![Plugins](./readme-images/3.png)
-8. Please note that the Godobuf panel may not be visible, because located on the last tab.<br/>
+## Note
+1. Please note that the Godobuf panel may not be visible, because located on the last tab.<br/>
 ![Plugins](./readme-images/7.png)
 
 ## Usage
