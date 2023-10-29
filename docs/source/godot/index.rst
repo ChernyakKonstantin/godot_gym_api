@@ -11,3 +11,4 @@ This section describes Godot-related side of the framework.
     rl_environment
     communication
     physics_frames_timer
+    sensors3d/index
