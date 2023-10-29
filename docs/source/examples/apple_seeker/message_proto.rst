@@ -59,3 +59,11 @@ Thus, we define ``WorldData`` as follows:
     message WorldData {
         bool apple_caught = 1;
     }
+
+3. The message should be compiled. 
+For Godot see `Godobuf/Usage` section and store compiled file as ``<YOUR_PATH>/apple_seeker/godot/protobuf_message.gd``. 
+For Python use the following command:
+
+.. code-block:: bash
+
+    protoc --python_out <YOUR_PATH>/apple_seeker/python <YOUR_PATH>/apple_seeker/message.proto
