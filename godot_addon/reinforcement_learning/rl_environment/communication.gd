@@ -3,8 +3,6 @@ class_name Communication, "../icons/custom_node_icon.png"
 
 signal got_connection
 
-var thread
-
 var server = TCP_Server.new()
 var connection: StreamPeerTCP = null
 var message_processing: bool = false
