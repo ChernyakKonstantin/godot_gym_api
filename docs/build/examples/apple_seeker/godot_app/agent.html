@@ -66,6 +66,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli_tools/index.html">CLI Tools</a></li>
 </ul>
 
         </div>
@@ -159,7 +160,7 @@ Recall, this is what we wanted to use as agent’s observation in previous secti
 <span class="k">var</span><span class="w"> </span><span class="n">current_action</span><span class="p">:</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
 
 <span class="k">onready</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">Body</span>
-<span class="k">onready</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">sensors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">Sensors</span>
+<span class="k">onready</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">sensors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">Body</span><span class="o">/</span><span class="n">Sensors</span>
 
 <span class="k">func</span><span class="w"> </span><span class="n">get_data</span><span class="p">(</span><span class="n">_observation_request</span><span class="p">,</span><span class="w"> </span><span class="n">storage</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nb nb-Type">void</span><span class="p">:</span>
 <span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensors</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
@@ -258,7 +259,7 @@ Recall, this is what we wanted to use as agent’s observation in previous secti
 </li>
 <li><p>We introduced a variable to quickly access our sensors.</p>
 <blockquote>
-<div><div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">onready</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">sensors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">Sensors</span>
+<div><div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">onready</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">sensors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">Body</span><span class="o">/</span><span class="n">Sensors</span>
 </pre></div>
 </div>
 </div></blockquote>

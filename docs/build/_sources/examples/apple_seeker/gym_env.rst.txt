@@ -36,21 +36,20 @@ and the Godot application.
             ):
                 super().__init__(protobuf_message_module, engine_address, engine_chunk_size)
                 self._episode_length = episode_length
-                
                 # Define observation space in accordance to the agent in Godot app.
-                self._max_distance = 5 # The robot sensors range in Godot.
+                self._max_distance = 5
                 self.observation_space = spaces.Dict(
                     spaces={
                         "distances_to_obstacle": spaces.Box(
                             low=0,
                             high=self._max_distance,
-                            shape=[16,],  # We have 16 sensors on the robot in Godot.
+                            shape=[16,],
                             dtype=np.float32,
                         ),
                         "distances_to_target": spaces.Box(
                             low=0,
                             high=self._max_distance,
-                            shape=[16,],  # We have 16 sensors on the robot in Godot.
+                            shape=[16,],
                             dtype=np.float32,
                         ),
                     },
@@ -63,18 +62,22 @@ and the Godot application.
                 self._step_counter = None
 
             def _observe(self, state: Dict[str, Dict[str, Any]]) -> Dict:
-                return {k: state[self.AGENT_KEY][k] for k in ["distances_to_obstacle", "distances_to_target"]}
+                observation = {
+                    "distances_to_obstacle": np.asarray(state[self.AGENT_KEY].distances_to_obstacle),
+                    "distances_to_target": np.asarray(state[self.AGENT_KEY].distances_to_target),
+                }
+                return observation
 
             def _is_terminated(self, state) -> bool:
                 episode_steps_limit_reached = self._step_counter == self._episode_length
-                apple_caught = state[self.WORLD_KEY]["apple_caught"]
+                apple_caught = state[self.WORLD_KEY].apple_caught
                 return episode_steps_limit_reached or apple_caught
 
             def _reward_function(self, state):
-                if state[self.WORLD_KEY]["apple_caught"]:
+                if state[self.WORLD_KEY].apple_caught:
                     return 100
                 else:
-                    return -min(state[self.AGENT_KEY]["distances_to_target"]) / self._max_distance
+                    return -min(np.asarray(state[self.AGENT_KEY].distances_to_target)) / self._max_distance
 
             def step(self, action: np.ndarray) -> Tuple[np.ndarray, float, bool, dict]:
                 state = self._godot_step(action.item())
@@ -98,4 +101,3 @@ and the Godot application.
 
             def close(self):
                 pass
-

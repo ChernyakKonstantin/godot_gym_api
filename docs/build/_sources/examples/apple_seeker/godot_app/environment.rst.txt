@@ -9,7 +9,9 @@ In **Godot Gym API** *Environment* (``RLEnvironment`` node) is assumed as top no
 
 2. Change ``Environment`` node type from ``Spatial`` to ``RLEnvironmnt``.
 
-3. Attach a new scipt to ``Environment`` node and paste the following code:
+3. Open ``Agent`` node Inspector tab and select ``Environmnet/World/Apple`` in ``Target Node Path`` field.
+
+4. Attach a new scipt to ``Environment`` node and paste the following code:
 
     .. code-block:: gdscript
 
