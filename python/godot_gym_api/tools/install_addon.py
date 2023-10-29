@@ -17,7 +17,7 @@ def install_addon(target_path: str) -> None:
     )
 
     print("Copying godobuf addon...")
-    shutil.copytree(base_path.joinpath("reinforcement_learning"), addons_path.joinpath("godobuf"), dirs_exist_ok=True)
+    shutil.copytree(base_path.joinpath("godobuf"), addons_path.joinpath("godobuf"), dirs_exist_ok=True)
 
     print("Done!")
 
