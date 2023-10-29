@@ -8,7 +8,7 @@ Installation
 
 .. code-block:: bash
 
-   pip3 install git+https://github.com/ChernyakKonstantin/godot_gym_api.git
+   pip3 install git+https://github.com/ChernyakKonstantin/godot_gym_api.git#subdirectory=python
 
 3. To install Godot addons to your project, run the following command from your terminal:
 
