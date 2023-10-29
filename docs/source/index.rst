@@ -38,3 +38,4 @@ User Guide
    python/index
    godobuf/index
    examples/index
+   cli_tools/index
