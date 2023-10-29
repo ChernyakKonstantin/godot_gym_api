@@ -38,11 +38,14 @@ The apple can be located in any position in the room at the begging of an episod
 
 To demonstate how it is easy to adapt yout existing Godot game to RL-environment we will use original game as source.
 
+.. image:: ./images/environment_demo.gif
+    :width: 600
+
 Steps
 -----
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 2
     
     project
     installation

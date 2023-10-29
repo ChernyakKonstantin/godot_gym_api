@@ -6,9 +6,6 @@ In this step, we train PPO algorithm with help of
 Basically, it is reproduction of the 
 `SB3 example <https://stable-baselines3.readthedocs.io/en/master/guide/examples.html>`_.
 
-Steps
------
-
 1. In your project directory create a file ``train.py``.
 
 2. Import required packages as follows:
