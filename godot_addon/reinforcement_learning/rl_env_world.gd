@@ -6,7 +6,7 @@ func _ready():
 	set_pause_mode(Node.PAUSE_MODE_STOP)
 
 # Optional method to implement the world reset.
-func reset():
+func reset(arguments=null):
 	pass
 
 # Optional method to perform additional logic on configuration

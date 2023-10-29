@@ -8,7 +8,7 @@ func _ready():
 func set_action(action):
 	push_error("One should override the method in his own subclass.")
 	
-func reset(new_position):
+func reset(arguments=null):
 	# One should override the method in his own subclass.
 	pass
 
