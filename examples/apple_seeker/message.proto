@@ -9,7 +9,6 @@ message AgentData {
 	repeated float distances_to_target = 2;
 }
 
-
 message Message {
 	AgentData agent_data = 1;
 	WorldData world_data = 2;
