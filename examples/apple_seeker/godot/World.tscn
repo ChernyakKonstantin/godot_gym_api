@@ -1,57 +1,81 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
-[ext_resource path="res://assets/playing_area.glb" type="PackedScene" id=2]
+[ext_resource path="res://assets/room.glb" type="PackedScene" id=2]
 
-[sub_resource type="ConcavePolygonShape" id=1]
-data = PoolVector3Array( -1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 0.95, 1, -0.95, -0.95, -0.9, -0.95, -0.95, 1, -0.95, 0.95, 1, -0.95, 0.95, -0.9, -0.95, -0.95, -0.9, -0.95, -0.95, 1, 0.95, -1, 1, -1, -0.95, 1, -0.95, -0.95, 1, 0.95, -1, 1, 1, -1, 1, -1, -0.95, 1, -0.95, 1, 1, -1, 0.95, 1, -0.95, -0.95, 1, -0.95, -1, 1, -1, 1, 1, -1, 0.95, 1, -0.95, 1, 1, 1, 0.95, 1, 0.95, 0.95, 1, -0.95, 1, 1, -1, 1, 1, 1, 0.95, 1, 0.95, -1, 1, 1, -0.95, 1, 0.95, 0.95, 1, 0.95, 1, 1, 1, -1, 1, 1, 0.95, -0.9, -0.95, -0.95, -0.9, 0.95, -0.95, -0.9, -0.95, 0.95, -0.9, -0.95, 0.95, -0.9, 0.95, -0.95, -0.9, 0.95, 0.95, 1, 0.95, 0.95, -0.9, -0.95, 0.95, 1, -0.95, 0.95, 1, 0.95, 0.95, -0.9, 0.95, 0.95, -0.9, -0.95, -0.95, 1, -0.95, -0.95, -0.9, 0.95, -0.95, 1, 0.95, -0.95, 1, -0.95, -0.95, -0.9, -0.95, -0.95, -0.9, 0.95, -0.95, 1, 0.95, 0.95, -0.9, 0.95, 0.95, 1, 0.95, -0.95, 1, 0.95, -0.95, -0.9, 0.95, 0.95, -0.9, 0.95 )
+[sub_resource type="ConcavePolygonShape" id=7]
+data = PoolVector3Array( -1.2814, 0, 4, -1.2814, 3, -4, -1.2814, 0, -4, -1.2814, 0, 4, -1.2814, 3, 4, -1.2814, 3, -4, -1.2814, 0, -4, 4, 3, -4, 4, 0, -4, -1.2814, 0, -4, -1.2814, 3, -4, 4, 3, -4, 4, 0, -4, 4, 3, 4, 4, 0, 4, 4, 0, -4, 4, 3, -4, 4, 3, 4, 4, 0, 4, -1.2814, 3, 4, -1.2814, 0, 4, 4, 0, 4, 4, 3, 4, -1.2814, 3, 4, -1.3391, -0.0577, 4.0577, -1.3521, 3, -4.0707, -1.3521, 3, 4.0707, -1.3391, -0.0577, 4.0577, -1.3391, -0.0577, -4.0577, -1.3521, 3, -4.0707, -1.3391, -0.0577, -4.0577, 4.0707, 3, -4.0707, -1.3521, 3, -4.0707, -1.3391, -0.0577, -4.0577, 4.0577, -0.0577, -4.0577, 4.0707, 3, -4.0707, 4.0577, -0.0577, -4.0577, 4.0707, 3, 4.0707, 4.0707, 3, -4.0707, 4.0577, -0.0577, -4.0577, 4.0577, -0.0577, 4.0577, 4.0707, 3, 4.0707, 4.0577, -0.0577, 4.0577, -1.3521, 3, 4.0707, 4.0707, 3, 4.0707, 4.0577, -0.0577, 4.0577, -1.3391, -0.0577, 4.0577, -1.3521, 3, 4.0707, -1.3391, -0.0577, -4.0577, 4.0577, -0.0577, 4.0577, 4.0577, -0.0577, -4.0577, -1.3391, -0.0577, -4.0577, -1.3391, -0.0577, 4.0577, 4.0577, -0.0577, 4.0577, 4, 3, -4, 4.0707, 3, 4.0707, 4, 3, 4, 4, 3, -4, 4.0707, 3, -4.0707, 4.0707, 3, 4.0707, -1.2814, 3, 4, -1.3521, 3, -4.0707, -1.2814, 3, -4, -1.2814, 3, 4, -1.3521, 3, 4.0707, -1.3521, 3, -4.0707, 4, 3, 4, -1.3521, 3, 4.0707, -1.2814, 3, 4, 4, 3, 4, 4.0707, 3, 4.0707, -1.3521, 3, 4.0707, -1.2814, 3, -4, 4.0707, 3, -4.0707, 4, 3, -4, -1.2814, 3, -4, -1.3521, 3, -4.0707, 4.0707, 3, -4.0707, -1.2814, 0, -4, 4, 0, 4, -1.2814, 0, 4, -1.2814, 0, -4, 4, 0, -4, 4, 0, 4 )
 
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0, 0, 1, 1 )
+[sub_resource type="ConvexPolygonShape" id=8]
+points = PoolVector3Array( 0.799965, 1.06599, 0.0535554, 0.816428, 2.38419e-07, 0.0535554, 0.799965, 1.06599, -0.0535554, -0.800125, 1.06599, 0.0535554, 0.816428, 2.38419e-07, -0.0535554, -0.816428, 2.38419e-07, 0.0535554, -0.800125, 1.06599, -0.0535554, -0.816428, 2.38419e-07, -0.0535554 )
+
+[sub_resource type="ConvexPolygonShape" id=9]
+points = PoolVector3Array( -0.805, -1.78814e-07, -0.434877, -0.805, -1.78814e-07, 0.434792, -0.805, 0.820324, -0.434877, 0.805, -1.78814e-07, -0.434877, -0.805, 0.820324, 0.434792, 0.805, -1.78814e-07, 0.434792, 0.805, 0.820324, -0.434877, 0.805, 0.820324, 0.434792 )
+
+[sub_resource type="ConvexPolygonShape" id=10]
+points = PoolVector3Array( 1, 2, 0.184051, 1, 0, 0.184051, 1, 2, -0.184051, -1, 2, 0.184051, 1, 0, -0.184051, -1, 0, 0.184051, -1, 2, -0.184051, -1, 0, -0.184051 )
+
+[sub_resource type="ConvexPolygonShape" id=11]
+points = PoolVector3Array( 0.450806, 0.300912, 1.23324, 0.378349, 0.361235, 1.16081, -0.450806, 0.300912, 1.23324, 0.450806, 0, 1.23324, 0.450806, 0.300912, -0.766759, 0.378349, 0.361235, 0.796671, -0.378437, 0.361235, 1.16081, -0.450806, 0, 1.23324, -0.450806, 0.300912, -0.766759, 0.450806, 0, -0.766759, 0.408355, 0.323542, -0.724473, -0.378437, 0.361235, 0.796671, -0.450806, 0, -0.766759, -0.408443, 0.323542, -0.724473 )
+
+[sub_resource type="ConvexPolygonShape" id=12]
+points = PoolVector3Array( -0.2, 0.395683, -0.2, -0.2, 0.395683, 0.2, -0.2, 0.466025, -0.2, 0.2, 0.395683, -0.2, -0.130149, 0, -0.130149, -0.130149, 0, 0.13011, 0.2, 0.395683, 0.2, -0.2, 0.466025, 0.2, 0.2, 0.466025, -0.2, 0.13011, 0, -0.130149, 0.13011, 0, 0.13011, 0.2, 0.466025, 0.2 )
+
+[sub_resource type="ConvexPolygonShape" id=13]
+points = PoolVector3Array( -0.350324, 1.78814e-07, -0.562116, -0.399783, 0.777267, -0.60452, 0.350276, 1.78814e-07, -0.562116, -0.350324, 1.78814e-07, 0.561886, -0.399783, 0.8226, -0.60452, 0.403509, 0.777267, -0.60452, -0.399783, 0.777267, 0.59548, 0.350276, 1.78814e-07, 0.561886, 0.403509, 0.8226, -0.60452, -0.399783, 0.8226, 0.59548, 0.403509, 0.777267, 0.59548, 0.403509, 0.8226, 0.59548 )
 
 [sub_resource type="SphereShape" id=3]
 radius = 0.5
 
 [sub_resource type="SphereMesh" id=4]
-radius = 0.5
-height = 1.0
+radius = 0.25
+height = 0.5
 
 [sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="CylinderMesh" id=7]
-height = 0.1
-
-[sub_resource type="SpatialMaterial" id=8]
-flags_transparent = true
-flags_unshaded = true
-flags_do_not_receive_shadows = true
-flags_disable_ambient_light = true
-albedo_color = Color( 1, 0, 0, 0.0392157 )
-
 [sub_resource type="CylinderShape" id=6]
-height = 1.0
+height = 0.5
+radius = 0.6
 
-[node name="RLEnvWorld" type="Spatial"]
+[node name="World" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="PlayingArea" type="StaticBody" parent="."]
-collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="PlayingArea"]
-transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 1, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 7 )
 
-[node name="Mesh" parent="PlayingArea" instance=ExtResource( 2 )]
+[node name="CollisionShape2" type="CollisionShape" parent="PlayingArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.425978, 0, -0.0792906 )
+shape = SubResource( 8 )
 
-[node name="Cube" parent="PlayingArea/Mesh" index="0"]
-material/0 = SubResource( 2 )
+[node name="CollisionShape3" type="CollisionShape" parent="PlayingArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221793, 0, 3.54699 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="PlayingArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84084, 0, 3.7856 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="PlayingArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.34304, 0, 2.73226 )
+shape = SubResource( 11 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="PlayingArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02103, 0, -1.10103 )
+shape = SubResource( 12 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="PlayingArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.59075, 0, -1.10103 )
+shape = SubResource( 13 )
+
+[node name="room" parent="PlayingArea" instance=ExtResource( 2 )]
 
 [node name="Apple" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47319, 0.26031, -2.12068 )
 
 [node name="AppleObject" type="StaticBody" parent="Apple"]
-collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="Apple/AppleObject"]
 shape = SubResource( 3 )
@@ -61,14 +85,39 @@ mesh = SubResource( 4 )
 skeleton = NodePath("../../..")
 material/0 = SubResource( 5 )
 
-[node name="AppleCatchZone" type="MeshInstance" parent="Apple"]
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
-
 [node name="AppleCatchArea" type="Area" parent="Apple"]
-collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="Apple/AppleCatchArea"]
 shape = SubResource( 6 )
 
-[editable path="PlayingArea/Mesh"]
+[node name="SpawnAreas" type="Spatial" parent="."]
+
+[node name="Position3D" type="Position3D" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.237, 0.26, 1.16877 )
+
+[node name="Position3D2" type="Position3D" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75958, 0.26, -3.12221 )
+
+[node name="Position3D3" type="Position3D" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.656792, 0.26, -3.12221 )
+
+[node name="Position3D4" type="Position3D" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.109845, 0.26, -2.32096 )
+
+[node name="Position3D5" type="Position3D" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0008, 0.26, -1.23637 )
+
+[node name="Position3D6" type="Position3D" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.922315, 0.26, -1.12291 )
+
+[node name="Position3D7" type="Position3D" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.740471, 0.26, 0.351033 )
+
+[node name="Position3D8" type="Position3D" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73875, 0.26, 1.33584 )
+
+[node name="Position3D9" type="Position3D" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.601012, 0.26, 1.30274 )
+
+[node name="Position3D10" type="Position3D" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64878, 0.26, 2.82011 )

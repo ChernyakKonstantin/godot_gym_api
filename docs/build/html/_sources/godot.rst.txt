@@ -1,8 +1,0 @@
-Godot side
-==========
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-   :caption: JOPA
-   godot_classes/godot_rl_agent

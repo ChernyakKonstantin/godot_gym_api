@@ -2,17 +2,14 @@ Apple Seeker example
 ====================
 
 In this step-by-step tutorial, you will create your first complete RL-project with **Godot Gym API**. 
-By the end of tutorial you will have a trained agent capable of finding apples in the room, 
-as shown in the gif below.
-
-**TODO: Insert gif how trained agent behaves**.
+By the end of tutorial you will have a trained agent capable of finding apples in the room.
 
 You will learn to:
 
 * Install **Godot Gym API** in Python and Godot.
 * Create an environment in Godot with help of **Godot Gym API** base classes.
 * Create Gym interface in Python with help of **Godot Gym API** base classes.
-* Esteblish a connection between Godot and Python.
+* Establish a connection between Godot and Python.
 * Train your own agent with help of `Stable-Baselines3 library <https://github.com/DLR-RM/stable-baselines3>`_.
 
 .. note::
@@ -23,8 +20,11 @@ You will learn to:
 .. note::
     In this tutorial, *GDScript* language is used to code in Godot.
 
-The full example can be found 
+The complete example can be found 
 `here <https://github.com/ChernyakKonstantin/godot_gym_api/tree/main/examples/apple_seeker>`_.
+
+The original game can be found 
+`here <https://github.com/ChernyakKonstantin/godot_gym_api/tree/main/examples/apple_seeker/original_game>`_.
 
 Environment Description
 -----------------------
@@ -36,16 +36,18 @@ The robot can move *forward*, *backward*, *left*, *right*.
 The robot task is to quickly reach the apple from any starting point. 
 The apple can be located in any position in the room at the begging of an episode. 
 
+To demonstate how it is easy to adapt yout existing Godot game to RL-environment we will use original game as source.
+
 Steps
 -----
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 3
     
     project
     installation
     message_proto
-    godot_app
+    godot_app/index
     gym_env
     agent_training
     final

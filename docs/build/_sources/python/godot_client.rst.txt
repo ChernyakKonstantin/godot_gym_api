@@ -1,7 +1,8 @@
-GodotClient
+GodotCLient
 ===========
 
-.. autosummary::
-    :toctree: generated
-
-    godot_gym_api.GodotClient
+.. automodule:: godot_gym_api.godot_client
+   :members:
+   :undoc-members:
+   :private-members:
+   :show-inheritance:

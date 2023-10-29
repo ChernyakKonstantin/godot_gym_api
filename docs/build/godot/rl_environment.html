@@ -20,7 +20,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="next" title="Communication" href="communication.html" />
     <link rel="prev" title="RLEnvWorld" href="rl_env_world.html" /> 
 </head>
 
@@ -55,9 +55,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#method-descriptions">Method Descriptions</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="communication.html">Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physics_frames_timer.html">PhysicsFramesTimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors3d/index.html">Sensors3D</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../godobuf/index.html">Godobuf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
 </ul>
 
@@ -95,6 +99,7 @@
 User must override the class to set requered properties and initialization.</p>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>This is top-level class that have <code class="docutils literal notranslate"><span class="pre">RLAgent</span></code> and <code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code> as children nodes.</p>
 <p>This class implements logic on:</p>
 <ol class="arabic simple">
 <li><p>Establishing connection between Godot app and client code (e.g. Python script).</p></li>
@@ -103,6 +108,12 @@ User must override the class to set requered properties and initialization.</p>
 to keep environemnt state while sending data.</p>
 <p>3. Managing requests from client. The response is send only for observation request. Configuration request are not responded.
 Observation request is usually in conjunction with action request, forming environment step request.</p>
+<p>Typical example of an project structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Environment</span> <span class="p">(</span><span class="n">inherited</span> <span class="kn">from</span> <span class="nn">RLEnvironment</span><span class="p">)</span>
+<span class="o">|</span><span class="n">___Agent</span> <span class="p">(</span><span class="n">inherited</span> <span class="kn">from</span> <span class="nn">RLAgent</span><span class="p">)</span>
+<span class="o">|</span><span class="n">___World</span> <span class="p">(</span><span class="n">inherited</span> <span class="kn">from</span> <span class="nn">RLEnvWorld</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Permalink to this heading"></a></h2>
@@ -324,7 +335,7 @@ again to emulate real-time interaction of client controlling agent and world.</p
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="rl_env_world.html" class="btn btn-neutral float-left" title="RLEnvWorld" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="communication.html" class="btn btn-neutral float-right" title="Communication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

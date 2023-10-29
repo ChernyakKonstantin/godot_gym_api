@@ -7,4 +7,4 @@ func _ready():
 
 func _reset():
 	world.reset()
-	agent.reset(world.sample_initial_position())
+	agent.reset()

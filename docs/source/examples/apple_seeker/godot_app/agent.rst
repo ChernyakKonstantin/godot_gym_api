@@ -72,7 +72,7 @@ while its children can move. This done to enable the agent control different nod
         var current_action: int = -1
 
         onready var body = $Body
-        onready var sensors = $Sensors
+        onready var sensors = $Body/Sensors
 
         func get_data(_observation_request, storage) -> void:
             var data = sensors.get_data()
@@ -172,7 +172,7 @@ Let's examine what we changed.
 
     .. code-block:: gdscript
 
-        onready var sensors = $Sensors
+        onready var sensors = $Body/Sensors
 
 5. We updated ``_ready`` method to set sensors target.
 

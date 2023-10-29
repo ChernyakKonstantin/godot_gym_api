@@ -14,7 +14,8 @@ This class provides interface to set an agent action, to obtain the agent observ
 to configure and to reset the agent. User must override the class to implement own agent.
 
 In **GodotGymAPI** ``RLAgent`` is considered as top-level controller over object that interacts the ``RLEnvWorld`` 
-and sensors those percieve the ``RLEnvWorld``.
+and sensors those percieve the ``RLEnvWorld``. ``RLAgent`` node is considered as non-moving node. 
+We recomend to use RemoteTransform nodes to move sensors in accordance to the object that ``RLAgent`` manipulate (optional).
 
 Typical example of an Agent scene structure is:
 
@@ -22,10 +23,21 @@ Typical example of an Agent scene structure is:
 
     Agent (inherited from RLAgent)
     |___Robot (e.g. inherited from VehicleBody)
+    |   |___RemoteTransform (poitning to Sensors)
+    |
     |___Sensors (e.g. Spatial)
         |___RGBCamera
         |___RayCast
 
+or 
+
+.. code-block::
+
+    Agent (inherited from RLAgent)
+    |___Robot (e.g. inherited from VehicleBody)
+        |___Sensors (e.g. Spatial)
+            |___RGBCamera
+            |___RayCast
 
 Method Descriptions
 -------------------

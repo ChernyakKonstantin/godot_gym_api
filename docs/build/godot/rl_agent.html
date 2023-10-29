@@ -53,9 +53,13 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rl_env_world.html">RLEnvWorld</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rl_environment.html">RLEnvironment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication.html">Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physics_frames_timer.html">PhysicsFramesTimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors3d/index.html">Sensors3D</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../godobuf/index.html">Godobuf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
 </ul>
 
@@ -95,13 +99,24 @@
 <p>This class provides interface to set an agent action, to obtain the agent observation,
 to configure and to reset the agent. User must override the class to implement own agent.</p>
 <p>In <strong>GodotGymAPI</strong> <code class="docutils literal notranslate"><span class="pre">RLAgent</span></code> is considered as top-level controller over object that interacts the <code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code>
-and sensors those percieve the <code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code>.</p>
+and sensors those percieve the <code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code>. <code class="docutils literal notranslate"><span class="pre">RLAgent</span></code> node is considered as non-moving node.
+We recomend to use RemoteTransform nodes to move sensors in accordance to the object that <code class="docutils literal notranslate"><span class="pre">RLAgent</span></code> manipulate (optional).</p>
 <p>Typical example of an Agent scene structure is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Agent</span> <span class="p">(</span><span class="n">inherited</span> <span class="kn">from</span> <span class="nn">RLAgent</span><span class="p">)</span>
 <span class="o">|</span><span class="n">___Robot</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">inherited</span> <span class="kn">from</span> <span class="nn">VehicleBody</span><span class="p">)</span>
+<span class="o">|</span>   <span class="o">|</span><span class="n">___RemoteTransform</span> <span class="p">(</span><span class="n">poitning</span> <span class="n">to</span> <span class="n">Sensors</span><span class="p">)</span>
+<span class="o">|</span>
 <span class="o">|</span><span class="n">___Sensors</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">Spatial</span><span class="p">)</span>
     <span class="o">|</span><span class="n">___RGBCamera</span>
     <span class="o">|</span><span class="n">___RayCast</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Agent</span> <span class="p">(</span><span class="n">inherited</span> <span class="kn">from</span> <span class="nn">RLAgent</span><span class="p">)</span>
+<span class="o">|</span><span class="n">___Robot</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">inherited</span> <span class="kn">from</span> <span class="nn">VehicleBody</span><span class="p">)</span>
+    <span class="o">|</span><span class="n">___Sensors</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">Spatial</span><span class="p">)</span>
+        <span class="o">|</span><span class="n">___RGBCamera</span>
+        <span class="o">|</span><span class="n">___RayCast</span>
 </pre></div>
 </div>
 </section>
