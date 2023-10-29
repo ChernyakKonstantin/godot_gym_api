@@ -5,8 +5,6 @@ In this step-by-step tutorial, you will create your first complete RL-project wi
 By the end of tutorial you will have a trained agent capable of finding apples in the room, 
 as shown in the gif below.
 
-**TODO: Insert gif how trained agent behaves**.
-
 You will learn to:
 
 * Install **Godot Gym API** in Python and Godot.
