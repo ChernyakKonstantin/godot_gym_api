@@ -9,12 +9,24 @@ script = ExtResource( 2 )
 
 [node name="Agent" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.12914 )
-target_node_path = NodePath("../World/Apple/AppleObject")
+target_node_path = NodePath("../World/Apple")
+
+[node name="Body" parent="Agent" index="0"]
+collision_layer = 2
 
 [node name="World" parent="." instance=ExtResource( 1 )]
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, -8.60946e-08, 1.51808e-08, 0, 0.173648, 0.984808, -8.74228e-08, 0.984808, -0.173648, 0, 17.4879, -4.03986 )
+[node name="PlayingArea" parent="World" index="0"]
+collision_mask = 3
 
+[node name="AppleObject" parent="World/Apple" index="0"]
+collision_mask = 3
+
+[node name="AppleCatchArea" parent="World/Apple" index="1"]
+collision_mask = 3
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.917151, -0.387487, 0.0932133, 0, 0.233887, 0.972264, -0.398541, 0.891712, -0.214509, 2.133, 9.848, -2.284 )
+
+[editable path="Agent"]
 [editable path="World"]
-[editable path="World/PlayingArea/Mesh"]

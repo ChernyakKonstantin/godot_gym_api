@@ -6,11 +6,11 @@ func _ready():
 	set_pause_mode(Node.PAUSE_MODE_STOP)
 
 # Optional method to implement the world reset.
-func reset():
+func reset(arguments=null):
 	pass
 
 # Optional method to perform additional logic on configuration
-func configure(agent_config: Dictionary):
+func configure(world_config: Dictionary):
 	pass
 
 func get_data(observation_request, storage) -> void:

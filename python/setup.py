@@ -15,7 +15,14 @@ install_requires = [
     "gymnasium",
     "numpy",
     "protobuf",
+    "fire",
 ]
 
+entry_points={
+    'console_scripts': [
+      'godot_gym_api=godot_gym_api.tools.interface:main',
+    ],
+}
+
 if __name__ == "__main__":
-    setup(**setup_kwargs, install_requires=install_requires)
+    setup(**setup_kwargs, install_requires=install_requires, entry_points=entry_points)

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GodotCLient &mdash; Godot Gym API 1.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=91e4a3f0"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GodotEnvironment" href="godot_environment.html" />
+    <link rel="prev" title="Python" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Godot Gym API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../godot/index.html">Godot</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GodotCLient</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient"><code class="docutils literal notranslate"><span class="pre">GodotClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.ACTION_KEY"><code class="docutils literal notranslate"><span class="pre">GodotClient.ACTION_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.AGENT_KEY"><code class="docutils literal notranslate"><span class="pre">GodotClient.AGENT_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.CONFIG_KEY"><code class="docutils literal notranslate"><span class="pre">GodotClient.CONFIG_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.ENVIRONMENT_KEY"><code class="docutils literal notranslate"><span class="pre">GodotClient.ENVIRONMENT_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.OBSERVATION_KEY"><code class="docutils literal notranslate"><span class="pre">GodotClient.OBSERVATION_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.RESET_KEY"><code class="docutils literal notranslate"><span class="pre">GodotClient.RESET_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.WORLD_KEY"><code class="docutils literal notranslate"><span class="pre">GodotClient.WORLD_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.__init__"><code class="docutils literal notranslate"><span class="pre">GodotClient.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient._connect_to_server"><code class="docutils literal notranslate"><span class="pre">GodotClient._connect_to_server()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient._get_data_from_stream"><code class="docutils literal notranslate"><span class="pre">GodotClient._get_data_from_stream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient._get_protobuf"><code class="docutils literal notranslate"><span class="pre">GodotClient._get_protobuf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient._get_response"><code class="docutils literal notranslate"><span class="pre">GodotClient._get_response()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.configure"><code class="docutils literal notranslate"><span class="pre">GodotClient.configure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.request"><code class="docutils literal notranslate"><span class="pre">GodotClient.request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.reset"><code class="docutils literal notranslate"><span class="pre">GodotClient.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#godot_gym_api.godot_client.GodotClient.step"><code class="docutils literal notranslate"><span class="pre">GodotClient.step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="godot_environment.html">GodotEnvironment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../godobuf/index.html">Godobuf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli_tools/index.html">CLI Tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Godot Gym API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python</a></li>
+      <li class="breadcrumb-item active">GodotCLient</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python/godot_client.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-godot_gym_api.godot_client">
+<span id="godotclient"></span><h1>GodotCLient<a class="headerlink" href="#module-godot_gym_api.godot_client" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">godot_gym_api.godot_client.</span></span><span class="sig-name descname"><span class="pre">GodotClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protobuf_message_module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">65536</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simulator engine client class.</p>
+<p>The class sends actions for RL-agent to a Godot app and gets current state from the Godot app.
+The class establish a persistent TCP connection.
+The class sends requests in form of JSON-files.
+The class recieve data in form of Protobuf messages.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.ACTION_KEY">
+<span class="sig-name descname"><span class="pre">ACTION_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'action'</span></em><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.ACTION_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.AGENT_KEY">
+<span class="sig-name descname"><span class="pre">AGENT_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'agent'</span></em><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.AGENT_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.CONFIG_KEY">
+<span class="sig-name descname"><span class="pre">CONFIG_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'config'</span></em><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.CONFIG_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.ENVIRONMENT_KEY">
+<span class="sig-name descname"><span class="pre">ENVIRONMENT_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'environment'</span></em><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.ENVIRONMENT_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.OBSERVATION_KEY">
+<span class="sig-name descname"><span class="pre">OBSERVATION_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'observation'</span></em><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.OBSERVATION_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.RESET_KEY">
+<span class="sig-name descname"><span class="pre">RESET_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'reset'</span></em><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.RESET_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.WORLD_KEY">
+<span class="sig-name descname"><span class="pre">WORLD_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'world'</span></em><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.WORLD_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protobuf_message_module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">65536</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize Godot Client.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>protobuf_message_module</strong> (<em>ModuleType</em>) – A module to load protobuf message from.</p></li>
+<li><p><strong>engine_address</strong> (<em>Tuple</em><em>[</em><em>str</em><em>, </em><em>int</em><em>]</em>) – Tuple of (<cite>IP-address</cite>, <cite>port</cite>).</p></li>
+<li><p><strong>chunk_size</strong> (<em>int</em>) – Size of the chunk to receive response from engine.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient._connect_to_server">
+<span class="sig-name descname"><span class="pre">_connect_to_server</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient._connect_to_server" title="Permalink to this definition"></a></dt>
+<dd><p>Repeatedly try to establish a connection to Godot app.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient._get_data_from_stream">
+<span class="sig-name descname"><span class="pre">_get_data_from_stream</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient._get_data_from_stream" title="Permalink to this definition"></a></dt>
+<dd><p>Read data from TCP stream.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Raw data from TCP stream.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bytes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient._get_protobuf">
+<span class="sig-name descname"><span class="pre">_get_protobuf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient._get_protobuf" title="Permalink to this definition"></a></dt>
+<dd><p>Parse bytes to restore Protobuf message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>raw_value</strong> (<em>bytes</em>) – Raw data from TCP stream.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Restored Protobuf message.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient._get_response">
+<span class="sig-name descname"><span class="pre">_get_response</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient._get_response" title="Permalink to this definition"></a></dt>
+<dd><p>Read response from Godot app.</p>
+<p>The method can accept only Protobuf messages as Godot response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Received Protobuf message with Agent and World observations.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Request engine to set configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Configuration to be set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.request">
+<span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.request" title="Permalink to this definition"></a></dt>
+<dd><p>Send request to Godot app and get response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Request.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Response.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requested_observation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.reset" title="Permalink to this definition"></a></dt>
+<dd><p>Request Godot app to reset environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>requested_observation</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Requested observations from World and Agent.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Initial observation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godot_gym_api.godot_client.GodotClient.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requested_observation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#godot_gym_api.godot_client.GodotClient.step" title="Permalink to this definition"></a></dt>
+<dd><p>Request engine to perform given action and return new observations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action</strong> (<em>Any</em>) – Action to perform by Agent.</p></li>
+<li><p><strong>requested_observation</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Requested observations from World and Agent.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New observation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="godot_environment.html" class="btn btn-neutral float-right" title="GodotEnvironment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ChernyakKonstantin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

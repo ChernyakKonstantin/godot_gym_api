@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+message WorldData {
+	<WRITE_YOUR_DATA_DESCRIPTION_HERE>
+}
+
+message AgentData {
+	<WRITE_YOUR_DATA_DESCRIPTION_HERE>
+}
+
+message Message {
+	AgentData agent_data = 1;
+	WorldData world_data = 2;
+}

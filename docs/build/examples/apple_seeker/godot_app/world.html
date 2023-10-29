@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creating World &mdash; Godot Gym API 1.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=91e4a3f0"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../../_static/tabs.js?v=3030b3cb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Creating Agent" href="agent.html" />
+    <link rel="prev" title="Creating Godot Application" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Godot Gym API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../godot/index.html">Godot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../godobuf/index.html">Godobuf</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Apple Seeker example</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#environment-description">Environment Description</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#steps">Steps</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../project.html">Project Creating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../message_proto.html">Creating protobuf message</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Creating Godot Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gym_env.html">Creating Gym Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../agent_training.html">Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../final.html">Final</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli_tools/index.html">CLI Tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Godot Gym API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Examples</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Apple Seeker example</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Creating Godot Application</a></li>
+      <li class="breadcrumb-item active">Creating World</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/examples/apple_seeker/godot_app/world.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="creating-world">
+<h1>Creating World<a class="headerlink" href="#creating-world" title="Permalink to this heading"></a></h1>
+<p>Now we are going to create a <em>World</em>.
+In <strong>Godot Gym API</strong> <em>World</em> (<code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code> node) is assumed to be everything in the environment
+the agent can interact with. For this tutotial, the <em>World</em> is a room with an apple inside.
+The apple can be located anywhere inside the room and its location is assigned on the <em>World</em> reset.</p>
+<ol class="arabic">
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">World.tscn</span></code> file.</p></li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">World</span></code> node type from <code class="docutils literal notranslate"><span class="pre">Spatial</span></code> to <code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code>.</p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">World</span></code> node script.</p></li>
+<li><p>Change script as follows:</p>
+<blockquote>
+<div><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TW9kaWZpZWQgc2NyaXB0" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-TW9kaWZpZWQgc2NyaXB0" name="TW9kaWZpZWQgc2NyaXB0" role="tab" tabindex="0">Modified script</button><button aria-controls="panel-0-T3JpZ2luYWwgc2NyaXB0" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-T3JpZ2luYWwgc2NyaXB0" name="T3JpZ2luYWwgc2NyaXB0" role="tab" tabindex="-1">Original script</button></div><div aria-labelledby="tab-0-TW9kaWZpZWQgc2NyaXB0" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-TW9kaWZpZWQgc2NyaXB0" name="TW9kaWZpZWQgc2NyaXB0" role="tabpanel" tabindex="0"><div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">extends</span><span class="w"> </span><span class="n">RLEnvWorld</span>
+
+<span class="k">onready</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">apple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">Apple</span>
+<span class="k">onready</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">spawn_areas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">SpawnAreas</span>
+<span class="k">onready</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">apple_caught</span><span class="p">:</span><span class="w"> </span><span class="nb nb-Type">bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">false</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">_ready</span><span class="p">():</span>
+<span class="w">    </span><span class="n">apple</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;AppleCatchArea&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;body_entered&quot;</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_on_catch_apple&quot;</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">reset</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">):</span>
+<span class="w">    </span><span class="n">apple_caught</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">false</span>
+<span class="w">    </span><span class="n">apple</span><span class="o">.</span><span class="n">set_global_translation</span><span class="p">(</span><span class="n">_sample_initial_position</span><span class="p">())</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">_on_catch_apple</span><span class="p">(</span><span class="n">_body</span><span class="p">):</span>
+<span class="w">    </span><span class="n">apple_caught</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">true</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">get_data</span><span class="p">(</span><span class="n">observation_request</span><span class="p">,</span><span class="w"> </span><span class="n">storage</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nb nb-Type">void</span><span class="p">:</span>
+<span class="w">    </span><span class="n">storage</span><span class="o">.</span><span class="n">set_apple_caught</span><span class="p">(</span><span class="n">apple_caught</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">_sample_initial_position</span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nb nb-Type">Vector3</span><span class="p">:</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">randi</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">spawn_areas</span><span class="o">.</span><span class="n">get_children</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">spawn_areas</span><span class="o">.</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">get_global_translation</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-T3JpZ2luYWwgc2NyaXB0" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-T3JpZ2luYWwgc2NyaXB0" name="T3JpZ2luYWwgc2NyaXB0" role="tabpanel" tabindex="0"><div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">extends</span><span class="w"> </span><span class="n">Spatial</span>
+
+<span class="k">onready</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">apple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">Apple</span>
+<span class="k">onready</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">spawn_areas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">SpawnAreas</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">_ready</span><span class="p">():</span>
+<span class="w">    </span><span class="n">apple</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;AppleCatchArea&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;body_entered&quot;</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_on_catch_apple&quot;</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">reset</span><span class="p">():</span>
+<span class="w">    </span><span class="n">apple</span><span class="o">.</span><span class="n">set_global_translation</span><span class="p">(</span><span class="n">_sample_initial_position</span><span class="p">())</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">_on_catch_apple</span><span class="p">(</span><span class="n">_body</span><span class="p">):</span>
+<span class="w">    </span><span class="n">reset</span><span class="p">()</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">_sample_initial_position</span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nb nb-Type">Vector3</span><span class="p">:</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">randi</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">spawn_areas</span><span class="o">.</span><span class="n">get_children</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">spawn_areas</span><span class="o">.</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">get_global_translation</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
+</div></blockquote>
+</li>
+</ol>
+<p>Let’s examine what we changed.</p>
+<ol class="arabic">
+<li><p>We changed parent class from <code class="docutils literal notranslate"><span class="pre">Spatial</span></code> to <code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code>.</p></li>
+<li><p>We introduced new variable to store current world state since we want to know it.</p>
+<blockquote>
+<div><div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">onready</span><span class="w"> </span><span class="k">var</span><span class="w"> </span><span class="n">apple_caught</span><span class="p">:</span><span class="w"> </span><span class="nb nb-Type">bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">false</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>3. <code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code> class have optional method <code class="docutils literal notranslate"><span class="pre">reset</span></code> to reset world that does nothing be default.
+In original game we already had it implemented.
+However, we need to modify it to match <code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code> signature.</p>
+<blockquote>
+<div><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-TW9kaWZpZWQgc2NyaXB0" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-TW9kaWZpZWQgc2NyaXB0" name="TW9kaWZpZWQgc2NyaXB0" role="tab" tabindex="0">Modified script</button><button aria-controls="panel-1-T3JpZ2luYWwgc2NyaXB0" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-T3JpZ2luYWwgc2NyaXB0" name="T3JpZ2luYWwgc2NyaXB0" role="tab" tabindex="-1">Original script</button></div><div aria-labelledby="tab-1-TW9kaWZpZWQgc2NyaXB0" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-TW9kaWZpZWQgc2NyaXB0" name="TW9kaWZpZWQgc2NyaXB0" role="tabpanel" tabindex="0"><div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">reset</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">):</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-T3JpZ2luYWwgc2NyaXB0" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-1-T3JpZ2luYWwgc2NyaXB0" name="T3JpZ2luYWwgc2NyaXB0" role="tabpanel" tabindex="0"><div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">reset</span><span class="p">():</span>
+</pre></div>
+</div>
+</div></div>
+<p>Then we need to add reset of our new variable:</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">apple_caught</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">false</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="4">
+<li><p>Original game is reseted once robot touches the apple. Now we want our new variable to be set on this event.</p>
+<blockquote>
+<div><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-TW9kaWZpZWQgc2NyaXB0" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-TW9kaWZpZWQgc2NyaXB0" name="TW9kaWZpZWQgc2NyaXB0" role="tab" tabindex="0">Modified script</button><button aria-controls="panel-2-T3JpZ2luYWwgc2NyaXB0" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-T3JpZ2luYWwgc2NyaXB0" name="T3JpZ2luYWwgc2NyaXB0" role="tab" tabindex="-1">Original script</button></div><div aria-labelledby="tab-2-TW9kaWZpZWQgc2NyaXB0" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-TW9kaWZpZWQgc2NyaXB0" name="TW9kaWZpZWQgc2NyaXB0" role="tabpanel" tabindex="0"><div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">_on_catch_apple</span><span class="p">(</span><span class="n">_body</span><span class="p">):</span>
+<span class="w">    </span><span class="n">apple_caught</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">true</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-T3JpZ2luYWwgc2NyaXB0" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-T3JpZ2luYWwgc2NyaXB0" name="T3JpZ2luYWwgc2NyaXB0" role="tabpanel" tabindex="0"><div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">_on_catch_apple</span><span class="p">(</span><span class="n">_body</span><span class="p">):</span>
+<span class="w">    </span><span class="n">reset</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
+</div></blockquote>
+</li>
+</ol>
+<p>5. By default, <code class="docutils literal notranslate"><span class="pre">RLEnvWorld.get_data</span></code> method raise an error, since no data to return is specified.
+Here, we override it to set <code class="docutils literal notranslate"><span class="pre">storage.apple_caught</span></code> field with <code class="docutils literal notranslate"><span class="pre">apple_caught</span></code> value.
+<code class="docutils literal notranslate"><span class="pre">storage</span></code> is <code class="docutils literal notranslate"><span class="pre">world_data</span></code> field in protobuf message we have defined earlier.
+In case you define various possible observations but you want to experiment with particular ones,
+you can define logic of the storage filling with help of observation keys in <code class="docutils literal notranslate"><span class="pre">observation_request</span></code>.</p>
+<blockquote>
+<div><div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="c1"># The method does not depend on `observation_request` argument in this example.</span>
+<span class="k">func</span><span class="w"> </span><span class="n">get_data</span><span class="p">(</span><span class="n">observation_request</span><span class="p">,</span><span class="w"> </span><span class="n">storage</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nb nb-Type">void</span><span class="p">:</span>
+<span class="w">    </span><span class="n">storage</span><span class="o">.</span><span class="n">set_apple_caught</span><span class="p">(</span><span class="n">apple_caught</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Thats’s it for <code class="docutils literal notranslate"><span class="pre">World</span></code>! Let’s summarize:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code> must have <code class="docutils literal notranslate"><span class="pre">get_data</span></code> method implemented.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RLEnvWorld</span></code> can have <code class="docutils literal notranslate"><span class="pre">reset</span></code> method implemented.</p></li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Creating Godot Application" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="agent.html" class="btn btn-neutral float-right" title="Creating Agent" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, ChernyakKonstantin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

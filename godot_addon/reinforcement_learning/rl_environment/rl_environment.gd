@@ -38,10 +38,10 @@ func _ready():
 	set_pause_mode(Node.PAUSE_MODE_PROCESS)
 	communication.connect("got_connection", self, "_on_got_connection")
 
-func _process(delta):
+func _process(delta_):
 	communication.server_poll()
 
-func _physics_process(delta):
+func _physics_process(delta_):
 	physics_frames_timer.step()
 
 # One can extend the method to perform additional logic before or after or override it.
