@@ -10,6 +10,7 @@ class GodotEnvironment(gym.Env):
 
     WORLD_KEY = GodotClient.WORLD_KEY
     AGENT_KEY = GodotClient.AGENT_KEY
+    ENVIRONMENT_KEY = GodotClient.ENVIRONMENT_KEY
 
     def __init__(
         self,

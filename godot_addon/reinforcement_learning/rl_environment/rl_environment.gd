@@ -21,6 +21,7 @@ var world: RLEnvWorld
 
 # Amount of physics steps to repeat same action.
 onready var repeat_action: int = 4
+onready var  time_speed: float = 1.0
 
 # Timer in terms of physics frames.
 onready var physics_frames_timer = PhysicsFramesTimer.new(repeat_action)
@@ -113,3 +114,7 @@ func _configure(configuration_request: Dictionary):
 		if "repeat_action" in env_config.keys():
 			repeat_action = env_config["repeat_action"]
 			physics_frames_timer.set_limit(repeat_action)
+		if " time_speed" in env_config.keys():
+			 time_speed = env_config[" time_speed"]
+			Engine.set_time_scale( time_speed)
+			Engine.set_iterations_per_second(60 *  time_speed)
