@@ -40,7 +40,7 @@ class AppleSeekerEnv(GodotEnvironment):
         # Set during reset
         self._step_counter = None
         # Speed up time in Godot to gather more samples per second.
-        self._godot_configure({self.ENVIRONMENT_KEY: {" time_speed": 4.0}})
+        self._godot_set_time_speed(4.0)
 
     def _observe(self, state: Dict[str, Dict[str, Any]]) -> Dict:
         observation = {

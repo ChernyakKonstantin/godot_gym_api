@@ -24,6 +24,9 @@ class GodotClient:
     AGENT_KEY = "agent"
     ENVIRONMENT_KEY = "environment"
 
+    DEFAULT_TIME_SPEED: float = 1.0
+    DEFAULT_REPEAT_ACTION: int = 4
+
     def __init__(
         self,
         protobuf_message_module: ModuleType,
@@ -170,3 +173,23 @@ class GodotClient:
             self.OBSERVATION_KEY: requested_observation,
         }
         return self.request(request)
+
+    def set_time_speed(self, time_speed: float) -> None:
+        """Request engine to set time speed.
+
+        Args:
+            time_speed (float): Time speed to be set.
+
+        """
+        config = {self.ENVIRONMENT_KEY: {"time_speed": time_speed}}
+        self.configure(config)
+
+    def set_repeat_action(self, n_repeats: int) -> None:
+        """Request engine to set repeat action.
+
+        Args:
+            n_repeats (int): Number of repeats to be set.
+
+        """
+        config = {self.ENVIRONMENT_KEY: {"repeat_action": n_repeats}}
+        self.configure(config)

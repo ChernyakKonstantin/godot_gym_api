@@ -61,3 +61,21 @@ class GodotEnvironment(gym.Env):
 
         """
         self._godot_client.configure(config)
+
+    def _godot_set_time_speed(self, time_speed: float) -> None:
+        """Wrapper over `GodotClient.set_repeat_action`.
+
+        Args:
+            time_speed (float): Time speed to be set.
+
+        """
+        self._godot_client.set_time_speed(time_speed)
+
+    def _godot_set_repeat_action(self, n_repeats: int) -> None:
+        """Wrapper over `GodotClient.set_repeat_action`.
+
+        Args:
+            n_repeats (int): Number of repeats to be set.
+
+        """
+        self._godot_client.set_repeat_action(n_repeats)
